@@ -103,9 +103,9 @@
   margin-bottom: 10px;
 }
 
-.blog-card p {
-   max-height: 80px;
-   overflow: hidden;
+.blog-card #content {
+  max-height: 80px;
+  overflow: hidden;
   font-size: 0.95rem;
   color: var(--muted);
   margin-bottom: 18px;

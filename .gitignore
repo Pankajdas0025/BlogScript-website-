@@ -2,6 +2,7 @@
 
 src/config.php
 PHPMailer/
+dashboard/
 .htaccess
 admin.php
 uploads/

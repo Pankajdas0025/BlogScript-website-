@@ -111,7 +111,7 @@ $_SESSION['email'];
 
       if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
           $search = $conn->real_escape_string($_GET['search']);
-          $query = "SELECT * FROM posts WHERE title LIKE '%$search%' OR content LIKE '%$search%' OR created_at LIKE '%$search%'";
+          $query = "SELECT * FROM posts WHERE title LIKE '%$search%' OR content LIKE '%$search%' OR created_at LIKE '%$search%' AND status=published'' ORDER BY created_at DESC";
           $result = $conn->query($query);
 
           if ($result && $result->num_rows > 0) {
@@ -124,7 +124,7 @@ $_SESSION['email'];
                   echo "
                     <div class='blog-card'>
                             <h3> $title</h3>
-                            <p>$content</p>
+                            <div id='content'>$content</div>
                             <div class='card-footer'>
                             <a href='view?id=$id'>Read More</a>
                             <span> $created</span>
@@ -137,7 +137,7 @@ $_SESSION['email'];
               echo "<p>No blogs matched your search. Try different keywords.</p>";
           }
       } else {
-$result = $conn->query("SELECT * FROM posts ORDER BY created_at DESC LIMIT 5");
+$result = $conn->query("SELECT * FROM posts WHERE status='published' ORDER BY created_at DESC LIMIT 8");
 while ($row = $result->fetch_assoc()) {
     $title = safe_output($row['title']);
     $content = ($row['content']);
@@ -146,7 +146,7 @@ while ($row = $result->fetch_assoc()) {
     echo "
                     <div class='blog-card'>
                             <h3> $title</h3>
-                            <p>$content</p>
+                            <div id='content'>$content</div>
                             <div class='card-footer'>
                             <a href='view?id=$id'>Read More</a>
                             <span> $created</span>

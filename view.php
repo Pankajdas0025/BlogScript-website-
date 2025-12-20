@@ -29,10 +29,10 @@ $post = $result->fetch_assoc();
     }
 
    .Textarea h2,.content p{margin-bottom:15px}
-   .Textarea h2{font-size:22px;display:flex;justify-content:space-between;align-items:center;word-wrap:break-word}
+   .Textarea h2{color:#fff;font-size:22px;display:flex;justify-content:space-between;align-items:center;word-wrap:break-word}
    .Textarea h2 button{background:#f0f0f0;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;transition:.3s}
    .Textarea h2 button:hover{background:#007bff;color:#fff}
-   .content{font-size:16px;line-height:1.7;color:#fff;border-top:1px solid #eee;border-bottom:1px solid #eee;padding:20px 0;word-wrap:break-word}
+   .content{font-size:16px;line-height:1.7;color:black;;border-top:1px solid #7d6666ff;border-bottom:1px solid #eee;padding:20px 0;word-wrap:break-word}
    .content ol,.content ul{margin:10px 20px}
    #footer{display:flex;justify-content:space-between;align-items:center;margin-top:20px;font-size:14px;color:#555;flex-wrap:wrap;gap:10px}
    #footer button,#footer span{display:flex;align-items:center;gap:6px;border:none;background:0 0;cursor:default;font-size:14px}
@@ -60,7 +60,6 @@ $post = $result->fetch_assoc();
 
     <div class="content">
       <?= $post['content'] ?>
-
       <!-- HTML formatting preserved -->
     </div>
 
