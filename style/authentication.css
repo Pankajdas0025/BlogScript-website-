@@ -1,0 +1,34 @@
+@import url("root.css");
+
+.box,.message{align-items:center;align-content:center;text-align:center}
+#ppass,input{font-size:15px}
+.box,.box p,.message,.sh{text-align:center}
+.message{background:#f8f1a4;font-size:1.05rem;border-bottom:4px solid #000;width:100%;height:50px;display:none;overflow:hidden}
+.box{color:#000;height:550px;width:420px;border-radius:0;margin:70px auto;background:linear-gradient(180deg,#6366f1,#f43f5e);padding:0}
+#Sibtn,#lbtn,#ppass,.box p,.sh,a{color:#fff}.sh{height:60px;width:100%;padding-top:30px;padding-left:12PX;font-weight:700;font-family:Poppins,sans-serif;font-size:1.5rem;top:0;border-radius:30px 30px 0 0}
+input{padding:15px;margin:20px 65px;width:250px;border-radius:5px;outline:0;border:0 #fff}
+input:focus{border-color:var(--primary-color)}
+#Loginbtn,#Signupbtn{width:280px;border-radius:5px;margin-left:65px;background:#6366f1;box-shadow:0 0 0 #000;font-family:sans-serif;font-weight:700;color:#fff}
+#Loginbtn:hover,#Signupbtn:hover{background:#4043e9;box-shadow:1px 1px 2px #000}
+#ppass{padding-left:210px;margin:0}
+.box p{padding:5px 50px;align-items:center}
+.box2{height:550px;width:420px;background:linear-gradient(90deg,#6366f1,#f43f5e);position:absolute;display:none;top:180px}
+.msg { padding: 12px 5px; background: #fee2e2; color: #7f1d1d; border-left: 4px solid #ef4444; margin: 10px 0; font-size: 14px;display: none;}
+/*Mobile responsive------------------------------------------------------------------------------------------------------------------- */
+@media screen and (max-width:600px)
+{
+body{max-width:100%;width:100%}
+.box{max-width:100vw;min-height:100vh;color:#000;display:block;margin:0}
+.box2{max-width:100vw;min-height:100vh;top:220px;}
+input{padding:15px 10px;margin:20px 25px;width:250px;border-radius:5px;outline:0;border:0 #fff;font-size:15px;box-shadow:2px 1px 5px #6366f1}
+#Loginbtn,#Signupbtn{width:280px;border-radius:5px;background:#6366f1;box-shadow:0 0 0 #000;font-family:sans-serif;font-weight:700;color:#fff}
+#Signupbtn{margin-left:20.5px}.box2{height:750px;border-radius:30px;margin:-80px 0 50px;position:absolute;display:none;overflow:hidden}
+#Loginbtn{margin-left:25px}
+}
+
+
+
+
+
+
+
