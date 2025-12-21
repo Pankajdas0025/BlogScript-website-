@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     <!-- Header -->
     <div style='background: linear-gradient(to right, #4f46e5, #ec4899); padding: 25px; text-align: center; color: #fff;'>
       <h1 style='margin: 0; font-size: 1.8rem;'>👋 Hey <span style='color: #d1fae5;'> $Username</span>,</h1>
-      <p style='margin-top: 10px; font-size: 1rem;'>Welcome to <strong>BlogScrip</strong> - Your Space to Create!</p>
+      <p style='margin-top: 10px; font-size: 1rem;'>Welcome to <strong>BlogScript</strong> - Your Space to Create!</p>
     </div>
 
     <!-- Body -->
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
       <hr style='border: none; border-top: 1px solid #ddd; margin: 30px 0;'>
 
       <p style='font-size: 0.85rem; color: #777; text-align: center;'>
-        Didn't sign up for BlogScrip? No worries — just ignore this email and your account will not be created.
+        Didn't sign up for BlogScript? No worries — just ignore this email and your account will not be created.
       </p>
     </div>
 

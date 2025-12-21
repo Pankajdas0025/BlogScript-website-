@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
 
 <!-- CSs link -->
-<link rel="stylesheet" href="Style/Authentication.css" type="text/css">
+<link rel="stylesheet" href="style/authentication.css" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <!-- cdn JQUARY -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -55,9 +55,6 @@ $stmt = $conn->prepare("INSERT INTO password_resets (email, token_hash, expires_
 $stmt->bind_param("sss", $email , $tokenHash, $expiresAt);
 $stmt->execute();
 
-
-
-
         // Prepare PHPMailer
         $mail = new PHPMailer(true);
         try {
@@ -87,7 +84,7 @@ $stmt->execute();
     <!-- Header -->
     <div style='background: linear-gradient(to right, #4f46e5, #ec4899); padding: 25px; text-align: center; color: #fff;'>
       <h1 style='margin: 0; font-size: 1.8rem;'>👋 Hey <span style='color: #d1fae5;'>$email</span>,</h1>
-      <p style='margin-top: 10px; font-size: 1rem; color:black;'>Welcome to <strong>BlogScrip</strong> - Your Space to Create!</p>
+      <p style='margin-top: 10px; font-size: 1rem; color:black;'>Welcome to <strong>BlogScript</strong> - Your Space to Create!</p>
     </div>
 
     <!-- Body -->
@@ -108,7 +105,7 @@ $stmt->execute();
       <hr style='border: none; border-top: 1px solid #ddd; margin: 30px 0;'>
 
       <p style='font-size: 0.85rem; color: #777; text-align: center;'>
-        Didn't sign up for BlogScrip? No worries — just ignore this email and your account will not be created.
+        Didn't sign up for BlogScript? No worries — just ignore this email and your account will not be created.
       </p>
     </div>
 

@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION['email']))
+    {
+    echo "<script>alert('Plesase Login ');</script>";
+    header("Location:register");
+    exit();
+    }
 $a = $_GET['id'];
 include 'src/db.php';
 include 'src/config.php';

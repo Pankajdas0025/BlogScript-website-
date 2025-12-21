@@ -4,6 +4,8 @@ include 'src/config.php';
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM posts JOIN users ON posts.user_id = users.id WHERE posts.id=$id");
 $post = $result->fetch_assoc();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +64,7 @@ $post = $result->fetch_assoc();
     </div>
 
     <div id="footer">
-      <span><i class="fa fa-user"></i> <?= "Blogger:" . $post['USER_NAME'] ?></span>
+      <span><i class="fa fa-user"></i><a href="profile?id=<?= $post['user_id'] ?>"><?= "Blogger:" . $post['USER_NAME'] ?></a></span>
       <span><i class="fa fa-calendar"></i> <?= $post['created_at'] ?></span>
     </div>
   </div>

@@ -1,9 +1,6 @@
 <?php
 include 'src/db.php';
 include 'src/config.php';
-
-
-
 // Get the reset username from GET safely
 $reset_token = isset($_GET['token']) ? trim($_GET['token']) : '';
 $sql = "SELECT email, token_hash FROM password_resets";
@@ -84,7 +81,7 @@ else
 <link rel="manifest" href="favicon_io/site.webmanifest">
 
 <!-- CSs link -->
-<link rel="stylesheet" href="Style/Authentication.css" type="text/css">
+<link rel="stylesheet" href="style/authentication.css" type="text/css">
 </head>
 <body>
     <div class="box">

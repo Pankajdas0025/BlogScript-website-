@@ -140,5 +140,5 @@
 }
   .blog-grid {
     grid-template-columns: 1fr;
-}.blog-card { min-width:90%;}
+}.blog-card { min-width:90%;margin: 10px auto;}
 }
