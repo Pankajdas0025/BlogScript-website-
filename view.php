@@ -2,7 +2,7 @@
 include 'src/db.php';
 include 'src/config.php';
 $id = $_GET['id'];
-$result = $conn->query("SELECT * FROM posts WHERE id=$id");
+$result = $conn->query("SELECT * FROM posts JOIN users ON posts.user_id = users.id WHERE posts.id=$id");
 $post = $result->fetch_assoc();
 ?>
 
@@ -35,10 +35,8 @@ $post = $result->fetch_assoc();
    .content{font-size:16px;line-height:1.7;color:black;;border-top:1px solid #7d6666ff;border-bottom:1px solid #eee;padding:20px 0;word-wrap:break-word}
    .content ol,.content ul{margin:10px 20px}
    #footer{display:flex;justify-content:space-between;align-items:center;margin-top:20px;font-size:14px;color:#555;flex-wrap:wrap;gap:10px}
-   #footer button,#footer span{display:flex;align-items:center;gap:6px;border:none;background:0 0;cursor:default;font-size:14px}
-   #footer button{cursor:pointer;background:#007bff;color:#fff;padding:6px 12px;border-radius:6px;transition:.3s}
-   #footer button:hover{background:#0056b3}
-
+   #footer span{display:flex;align-items:center; color:white; font-style: italic; font-weight: bold;}
+   #footer span i{margin-right:6px;color:#000;}
     /* Responsive */
     @media (max-width: 700px)
     {
@@ -64,7 +62,7 @@ $post = $result->fetch_assoc();
     </div>
 
     <div id="footer">
-      <span><i class="fa fa-user"></i> <?= "BLOGGER2025/" . $post['user_id'] ?></span>
+      <span><i class="fa fa-user"></i> <?= "Blogger:" . $post['USER_NAME'] ?></span>
       <span><i class="fa fa-calendar"></i> <?= $post['created_at'] ?></span>
     </div>
   </div>

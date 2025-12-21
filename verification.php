@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Verification</title>
-   <!--favicon ------------------------------------------------------------------------------>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Verification</title>
+<!--favicon ------------------------------------------------------------------------------>
 <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-<link rel="manifest" href="favicon_io/site.webmanifest">
-
-  <!-- CSs link -->
-  <link rel="stylesheet" href="Style/Authentication.css" type="text/css">
-  <!-- cdn JQUARY -->
+<!-- CSs link -->
+<link rel="stylesheet" href="style/authentication.css" type="text/css">
+<!-- cdn JQUARY -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 </head>
 <body>
 
@@ -41,7 +38,6 @@ $Verificationcode=$data['VERIFICATION_CODE'];
         <input type="text"  name="Fvcode" placeholder="Verification Code" value="<?= $vcode?>" >
         <input type="submit" name="Veripbtn" value="Verify" id="Signupbtn" onmouseover="this.style.backgroundColor='green'" onmouseout="this.style.backgroundColor='#6366f1'">
         <input type="text" id="PP" style="box-shadow:none; border:none; outline:none; color:green; font-size:25px; text-align:center;" readonly>
-
       </form>
     </div>
 
@@ -63,7 +59,7 @@ if($conn->query($sql))
 echo "<script>
   $(document).ready(function()
   {
-   $('#PP').val('Verification successful');
+   $('#PP').val('Verification successful').slideDown(400).delay(3000).slideUp(1000);
    $('#PP').css('color', 'green');
 
   });
@@ -78,8 +74,8 @@ echo "<script>
 else
 echo "<script>
   $(document).ready(function() {
-    $('#PP').val('Verification Failed');
-   $('#PP').css('color', 'red');
+    $('#PP').val('Verification Failed').fadeIn(400).delay(3000).fadeOut(1000);
+    $('#PP').css('color', 'red');
 
   });
 </script>";

@@ -111,7 +111,7 @@ $_SESSION['email'];
 
       if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
           $search = $conn->real_escape_string($_GET['search']);
-          $query = "SELECT * FROM posts WHERE title LIKE '%$search%' OR content LIKE '%$search%' OR created_at LIKE '%$search%' AND status=published'' ORDER BY created_at DESC";
+          $query = "SELECT * FROM posts WHERE title LIKE '%$search%' OR content LIKE '%$search%' OR created_at LIKE '%$search%' ORDER BY created_at DESC";
           $result = $conn->query($query);
 
           if ($result && $result->num_rows > 0) {
