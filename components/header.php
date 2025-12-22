@@ -66,7 +66,7 @@ header {
   <!-- HEADER -->
 <header>
   <div class="nav">
-    <div class="logo"><img src="Images/android-chrome-512x512.png" height="80" width="80"> BlogScript</div>
+    <div class="logo"><img src="https://blogscriptapp.free.nf/Images/android-chrome-512x512.png" height="80" width="80"> BlogScript</div>
     <div>
       <a href="<?= $local?>/">Home</a>
       <a href="<?= $local?>/#blogs">Blogs</a>
