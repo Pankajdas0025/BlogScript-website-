@@ -1,8 +1,14 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 include 'src/db.php';
 include 'src/config.php';
 session_start();
-$_SESSION['email'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
