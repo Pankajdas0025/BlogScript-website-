@@ -4,8 +4,10 @@ include 'src/config.php';
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM posts JOIN users ON posts.user_id = users.id WHERE posts.id=$id");
 $post = $result->fetch_assoc();
-
-
+ if (!$post) {
+    header("Location: index.php");
+    exit();
+ }
 ?>
 
 <!DOCTYPE html>

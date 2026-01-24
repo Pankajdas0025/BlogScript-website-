@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if (!isset($_SESSION['email']))
     {
@@ -6,9 +7,17 @@ if (!isset($_SESSION['email']))
     header("Location:register");
     exit();
     }
-$a = $_GET['id'];
 include 'src/db.php';
 include 'src/config.php';
+$user = $_GET['id'];
+$verife_user = $conn->query("SELECT * FROM users WHERE EMAIL='{$_SESSION['email']}'")->fetch_assoc();
+if ($verife_user['ID'] != $user) {
+  //redirect to login page
+    echo "<script>alert('Unauthorised access !Please login');</script>";
+    header("Location:logout");
+    exit();
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +107,7 @@ include 'src/config.php';
       $content = $_POST['content'];
 
       $stmt = $conn->prepare("INSERT INTO posts (title, content, user_id) VALUES (?, ?, ?)");
-      $stmt->bind_param("ssi", $title, $content, $a);
+      $stmt->bind_param("ssi", $title, $content, $user);
       $stmt->execute();
       echo "<script>alert('Post created successfully!'); window.location.href = 'admin';</script>";
       exit();

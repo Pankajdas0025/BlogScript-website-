@@ -1,6 +1,5 @@
  <?php
 session_start();
-
 if (!isset($_SESSION['email']))
     {
     echo "<script>alert('Plesase Login ');</script>";
@@ -9,7 +8,19 @@ if (!isset($_SESSION['email']))
     }
 include 'src/db.php';
 include 'src/config.php';
+
+//verify user that it only update their own post ===========================================================
 $id = $_GET['id'];
+$verife_user = $conn->query("SELECT * FROM posts JOIN users ON posts.user_id = users.id WHERE posts.id='$id'")->fetch_assoc();
+if ($verife_user['EMAIL'] != $_SESSION['email']) {
+  //redirect to login page
+    echo "<script>alert('Unauthorised access !Please login');</script>";
+    header("Location:logout");
+    exit();
+
+  }
+
+
 $result = $conn->query(" SELECT * FROM posts WHERE id='$id' ");
 $post = $result->fetch_assoc();
 ?>

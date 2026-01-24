@@ -3,11 +3,13 @@
 .box,.message{align-items:center;align-content:center;text-align:center}
 #ppass,input{font-size:15px}
 .box,.box p,.message,.sh{text-align:center}
-.message{background:#f8f1a4;font-size:1.05rem;border-bottom:4px solid #000;width:100%;height:50px;display:none;overflow:hidden}
+.message{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;z-index:1000; display: none;}
+.message .model-box{background:#fff;padding:20px 30px; justify-content: center; border-top: 10px solid red; box-shadow:0 0 10px #000;font-size:20px; margin: 2.5% auto; max-width:30%;min-width:300px}
 .box{color:#000;height:550px;width:420px;border-radius:0;margin:70px auto;background:linear-gradient(180deg,#6366f1,#f43f5e);padding:0}
 #Sibtn,#lbtn,#ppass,.box p,.sh,a{color:#fff}.sh{height:60px;width:100%;padding-top:30px;padding-left:12PX;font-weight:700;font-family:Poppins,sans-serif;font-size:1.5rem;top:0;border-radius:30px 30px 0 0}
-input{padding:15px;margin:20px 65px;width:250px;border-radius:5px;outline:0;border:0 #fff}
-input:focus{border-color:var(--primary-color)}
+input{padding:15px;margin:20px 65px;width:250px;border-radius:5px;outline:none;border:none}
+input[type="file"]{width:250px; background-color:white;}
+input:focus{border-color:#6366f1}
 #Loginbtn,#Signupbtn{width:280px;border-radius:5px;margin-left:65px;background:#6366f1;box-shadow:0 0 0 #000;font-family:sans-serif;font-weight:700;color:#fff}
 #Loginbtn:hover,#Signupbtn:hover{background:#4043e9;box-shadow:1px 1px 2px #000}
 #ppass{padding-left:210px;margin:0}
