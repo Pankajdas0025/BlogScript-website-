@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
 
     // Hash the password
     $hashed_password = password_hash($Password, PASSWORD_DEFAULT);
+    // Profile image upload handling--------------------------------------------------------------
     $fileExt = strtolower(pathinfo($Profile_img['name'], PATHINFO_EXTENSION));
     $allowed_Ext = ['jpg', 'jpeg', 'png'];
     $fileSize = $Profile_img['size'];

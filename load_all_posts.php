@@ -28,6 +28,7 @@ $posts = "";
 if ($result && $result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
     $title   = htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8');
+    $post_image = $row['post_image'];
     $content = $row['content'];
     $created = htmlspecialchars($row['created_at'], ENT_QUOTES, 'UTF-8');
     $id      = (int)$row['id'];
@@ -35,7 +36,7 @@ if ($result && $result->num_rows > 0) {
     $posts .= "
       <div class='blog-card'>
         <div class='post-img' width='100%' height='150px'>
-          <img src='uploads/posts/default.png' alt='{$title}' height='150px' width='100%'>
+          <img src='uploads/posts/{$post_image}' alt='{$title}' height='150px' width='100%'>
         </div>
         <h3>{$title}</h3>
         <div id='content'>{$content}</div>

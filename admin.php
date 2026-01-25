@@ -107,7 +107,7 @@ button.a1, button.a2, button.a3 {  padding: 6px 10px; margin: 2.5px; border-radi
         </a>
     </h2>
 
-    <table>
+    <table border="2">
         <tr style="background-color: #282836ff; font-weight: bold; color: #ffffff;">
             <td width="30%">Total Post: <?= $total_posts ?></td>
             <td width="30%">Pending: <?= $pending_posts ?></td>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Toast Example</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery Toast Plugin CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
+    <!-- jQuery Toast Plugin JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+
+    <h2>jQuery Toast Demo</h2>
+    <button id="successBtn">Show Success Toast</button>
+    <button id="errorBtn">Show Error Toast</button>
+    <button id="infoBtn">Show Info Toast</button>
+
+    <script>
+        $(document).ready(function () {
+            // Success Toast
+            $("#successBtn").click(function () {
+                $.toast({
+                    heading: 'Success',
+                    text: 'Your operation completed successfully!',
+                    showHideTransition: 'slide', // fade, slide or plain
+                    icon: 'success',
+                    position: 'top-right',
+                    loaderBg: '#28a745', // Loader background color
+                    hideAfter: 3000 // Auto-hide after 3 seconds
+                });
+            });
+
+            // Error Toast
+            $("#errorBtn").click(function () {
+                $.toast({
+                    heading: 'Error',
+                    text: 'Something went wrong. Please try again.',
+                    showHideTransition: 'fade',
+                    icon: 'error',
+                    position: 'top-center',
+                    loaderBg: '#dc3545',
+                    hideAfter: 5000
+                });
+            });
+
+            // Info Toast
+            $("#infoBtn").click(function () {
+                $.toast({
+                    heading: 'Information',
+                    text: 'This is an informational message.',
+                    showHideTransition: 'plain',
+                    icon: 'info',
+                    position: 'bottom-left',
+                    loaderBg: '#17a2b8',
+                    hideAfter: false // Stays until manually closed
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
