@@ -24,7 +24,6 @@ footer p {
   margin-top: 10px;
   font-size: 0.9rem;
 }
-
     </style>
 </head>
 <body>
