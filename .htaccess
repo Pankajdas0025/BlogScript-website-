@@ -1,0 +1,23 @@
+# Enable mod_rewrite
+RewriteEngine On
+
+# Clean URLs for root pages
+RewriteRule ^/$ index.php [L]
+RewriteRule ^home$ index.php [L]
+RewriteRule ^register$ authentication.php [L]
+RewriteRule ^admin$ admin.php [L]
+RewriteRule ^create$ create.php [L]
+RewriteRule ^delete$ delete.php [L]
+RewriteRule ^view$ view.php [L]
+RewriteRule ^update$ update.php [L]
+RewriteRule ^reset-password$ reset.php [L]
+RewriteRule ^login$ login.php [L]
+RewriteRule ^signup$ signup.php [L]
+RewriteRule ^verification$ verification.php [L]
+RewriteRule ^update-user-password$ updatepass.php [L]
+RewriteRule ^logout$ logout.php [L]
+RewriteRule ^profile$ profile.php [L]
+
+
+
+
