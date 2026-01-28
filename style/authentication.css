@@ -7,8 +7,9 @@
 .message .model-box{background:#fff;padding:20px 30px; justify-content: center; border-top: 10px solid red; box-shadow:0 0 10px #000;font-size:20px; margin: 2.5% auto; max-width:30%;min-width:300px}
 .box{color:#000;height:550px;width:420px;border-radius:0;margin:70px auto;background:linear-gradient(180deg,#6366f1,#f43f5e);padding:0}
 #Sibtn,#lbtn,#ppass,.box p,.sh,a{color:#fff}.sh{height:60px;width:100%;padding-top:30px;padding-left:12PX;font-weight:700;font-family:Poppins,sans-serif;font-size:1.5rem;top:0;border-radius:30px 30px 0 0}
-input{padding:15px;margin:20px 65px;width:250px;border-radius:5px;outline:none;border:none}
-input[type="file"]{width:250px; background-color:white;}
+input{padding:15px;margin:10px 65px; width:280px;border-radius:5px;outline:none;border:none}
+#signupForm small {color:#fff;float:left;margin-left:65px;}
+input[type="file"]{width:280px; background-color:white;}
 input:focus{border-color:#6366f1}
 #Loginbtn,#Signupbtn{width:280px;border-radius:5px;margin-left:65px;background:#6366f1;box-shadow:0 0 0 #000;font-family:sans-serif;font-weight:700;color:#fff}
 #Loginbtn:hover,#Signupbtn:hover{background:#4043e9;box-shadow:1px 1px 2px #000}

@@ -1,4 +1,4 @@
-
+<?php $local = "http://localhost/B";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +69,7 @@ header {
 
 </head>
 <body>
-  <?php include 'src/config.php'; ?>
+
  <!-- HEADER -->
 <header>
   <div class="nav">

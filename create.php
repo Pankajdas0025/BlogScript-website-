@@ -179,6 +179,7 @@ if ($verife_user['ID'] != $user) {
               position: 'top-right'
             });
           </script>";
+
         } else if ($result['status'] == 'error') {
           echo "<script>
             \$.toast({

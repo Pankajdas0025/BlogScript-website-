@@ -34,6 +34,7 @@ if (isset($_SESSION['email'])) {
       <form autocomplete="off" id="signupForm">
         <input type="text" id="uName" placeholder="Enter your name" title="Your Full name " onchange="checkName() " required>
         <input type="email" id="uEmail" placeholder="Enter your email" title="Your valid email" onchange="checkEmail() " required>
+        <small> * Upload your Profile image</small>
         <input type="file" id="uProfile" title=" 🧐 Upload Your Profile Image" required>
         <input type="password" id="uPass" placeholder="Password" title="Create a strong password!" onchange="checkPass() " required>
         <input type="submit" name="Signupbtn" value="Confirm" id="Signupbtn">

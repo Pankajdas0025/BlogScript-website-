@@ -40,9 +40,9 @@ echo "<script> setTimeout(function() {alert('session expired!');  window.locatio
     @import url('style/root.css');
 
 .Post a,.userlog a{text-decoration:none;transition:.3s}
-.Rightside{max-width:100%;min-height:100vh;height:auto;background:linear-gradient(45deg,#6366f1,#f43f5e); padding: 15px;}
+.Rightside{max-width:100%;min-height:100vh;height:auto; padding: 15px;}
 .header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-bottom:20px}
-.userlog{color:#ffffffff;font-size:15px}
+.userlog{color:black;font-size:15px}
 .userlog img{width:50px;border-radius:50%;vertical-align:middle;margin-right:10px;border:2px dotted #fff}
 .userlog a{margin-left:10px;color:#fff;border:none;outline:0}
 .userlog a:hover{color:#0056b3}
@@ -53,6 +53,7 @@ echo "<script> setTimeout(function() {alert('session expired!');  window.locatio
 .Post a{display:inline-block;margin:15px 0;font-size:20px;padding:8px 12px;background:#ffffffff;color:#110a0aff}
 table{width:100%;border-collapse:collapse;margin-top:10px;background:#fff;box-shadow:0 4px 15px rgba(0,0,0,.1)}
 table td,table th{padding:12px 15px;text-align:left;height:auto}
+.ttittle{color:black; font-weight: bolder;}
 table th{color:#fff}
 table tr:nth-child(odd){background-color: #bfb8b8ff;}
 .textarea{max-height:50px;overflow:hidden; margin: 0; }
@@ -68,6 +69,7 @@ button.a1,button.a2,button.a3{border:none;padding:6px 10px;margin-right:4px;bord
 @media (max-width: 768px)
 {
 .Rightside{margin: 0;}
+.post_container{overflow-x: auto;}
 .header{flex-direction: column;align-items: flex-start;gap: 10px;}
 .search input { width: 100%; margin-bottom: 20px; }
 table{min-width:100%; overflow-x:auto;}
@@ -106,20 +108,21 @@ button.a1, button.a2, button.a3 {  padding: 6px 10px; margin: 2.5px; border-radi
             <span class="glyphicon glyphicon-plus-sign"></span> CREATE POST
         </a>
     </h2>
-
+<div class="post_container">
     <table border="2">
         <tr style="background-color: #282836ff; font-weight: bold; color: #ffffff;">
-            <td width="30%">Total Post: <?= $total_posts ?></td>
-            <td width="30%">Pending: <?= $pending_posts ?></td>
-            <td width="0%"></td>
-            <td width="60%">Published: <?= $published_posts ?></td>
+            <td>Total Post: <?= $total_posts ?></td>
+            <td>Pending: <?= $pending_posts ?></td>
+            <td colspan="4">Published: <?= $published_posts ?></td>
 
         </tr>
         <tr>
+            <th width='10%'>Post Image</th>
             <th width='20%'>Title</th>
             <th width='30%'>Content</th>
-            <th width='20%'>Date</th>
-            <th width='30%'>Action</th>
+            <th width='15%'>Date</th>
+            <th width='5%'>Status</th>
+            <th width='20%'>Action</th>
         </tr>
 
 
@@ -132,24 +135,20 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     $query = "SELECT * FROM posts WHERE user_id='$Blogger_id' AND (title LIKE '%$search%' OR content LIKE '%$search%'  OR created_at LIKE '%$search%')";
     $result = $conn->query($query);
      if ($result->num_rows > 0) {
-
-
         while ($row = $result->fetch_assoc())
 
         {
            echo "<tr>
-
-
+                <td ><a href='view?id={$row['id']}'><img src = 'uploads/users/{$row['post_image']}' height='60' width='60'/></a></td>
                 <td class='ttittle'>{$row['title']}</td>
                 <td><div class='textarea'>{$row['content']}</div></td>
-                <td>{$row['created_at']}</td>
+                <td><i class='fa fa-calendar'></i> {$row['created_at']}</td>
+                <td>{$row['status']}</td>
                  <td>
                     <button class='a1'><a href='view?id={$row['id']}><i class='fa-solid fa-eye'></i></a></button>
                     <button class='a2'><a href='update?id={$row['id']}'><i class='fa-solid fa-pen-to-square'></i></a></button>
                     <button class='a3'><a href='delete?id={$row['id']}' onclick='return confirm(\"Are you sure?\")'><i class='fa-solid fa-trash'></i></a></button>
-
                 </td>
-
               </tr>";
 
 
@@ -173,9 +172,12 @@ else
     while ($row = $result->fetch_assoc())
      {
         echo "<tr>
+                <td ><a href='view?id={$row['id']}'><img src='{$local}/uploads/posts/".htmlspecialchars($row['post_image'])."' alt='Post Image' width='100'></a></td>
                 <td class='ttittle'>{$row['title']}</td>
                 <td><div class='textarea'>{$row['content']}</div></td>
-                <td>{$row['created_at']}</td>
+                <td><i class='fa fa-calendar'></i> {$row['created_at']}</td>
+                <td>{$row['status']}</td>
+
                  <td>
                     <button class='a1'><a href='view?id={$row['id']}'><i class='fa-solid fa-eye'></i></a></button>
                     <button class='a2'><a href='update?id={$row['id']}'><i class='fa-solid fa-pen-to-square'></i></a></button>
@@ -187,6 +189,7 @@ else
   }
     ?>
     </table>
+    </div>
 </div>
 <?php include 'components/footer.php'; ?>
 </body>

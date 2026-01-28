@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
     echo json_encode($result);
     exit();
   } else if (!preg_match('/@((gmail\.com)|(outlook\.com)|(yahoo\.com)|(hotmail\.com)|(live\.com)|(icloud\.com)|(protonmail\.com)|(aol\.com))$/i', $Email)) {
-    $result = array("status" => "error", "message" => "Only Gmail, Outlook, Yahoo, Hotmail, Live, iCloud, ProtonMail, and AOL domains are allowed!");
+    $result = array("status" => "error", "message" => "Only Gmail, Outlook, Yahoo, Hotmail, Live domains are allowed!");
     echo json_encode($result);
     exit();
   }
@@ -54,8 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
     $fileSize = $Profile_img['size'];
 
     // File size check must be
-    if ($fileSize > 2097152) {
-      $result = array("status" => "error", "message" => "File size must be 2mb or lower.");
+    if ($fileSize > 5*1024) {
+      $result = array("status" => "error", "message" => "File size must be 500KB or lower.");
       echo json_encode($result);
       exit();
     }
