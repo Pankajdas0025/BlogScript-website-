@@ -101,7 +101,6 @@
 /* ========== CARD ========== */
 .blog-card {
 
-  border-radius: var(--radius);
   padding: 24px 20px;
   box-shadow: 1px 0px 2px rgb(66, 65, 65) , -1px 0px 22px rgb(244, 244, 244) inset;
   background-color: var(--white);

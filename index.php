@@ -163,6 +163,7 @@ session_start();
             </script>
 
     <!-- FOOTER -->
+     <?php include 'chatboat.php' ?>
     <?php include 'components/footer.php'; ?>
   </body>
 </html>
