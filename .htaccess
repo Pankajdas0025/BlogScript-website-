@@ -1,41 +1,42 @@
 #############################################
 # ✅ BLOGSCRIPT - INFINITYFREE .HTACCESS
-# Clean URLs + Basic Security Hardening
+# Clean URLs + Basic Security (API Safe)
 #############################################
 
-# =========================
-# ✅ BASIC HARDENING
-# =========================
 Options -Indexes
 ServerSignature Off
 
-# =========================
-# ✅ REWRITE ENGINE ON
-# =========================
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-# -------------------------
-# 🔒 Block hidden files/folders (.env, .git, etc.)
-# -------------------------
+# =========================
+# ✅ 1) ALLOW API ROUTES FIRST
+# (prevents security rules from blocking API)
+# =========================
+RewriteRule ^api/ - [L]
+
+# =========================
+# ✅ 2) BLOCK HIDDEN FILES/FOLDERS (.env, .git, etc.)
+# =========================
 RewriteRule (^|/)\. - [F,L]
 
-# -------------------------
-# 🔒 Block common malicious query strings (SQLi/XSS/LFI)
-# -------------------------
-RewriteCond %{QUERY_STRING} (\.\./|%2e%2e%2f|<|>|%3c|%3e|union.*select|concat\(|base64_encode|GLOBALS|_REQUEST) [NC,OR]
+# =========================
+# ✅ 3) BLOCK SOME MALICIOUS QUERY STRINGS
+# (removed < and > because it causes false blocks)
+# =========================
+RewriteCond %{QUERY_STRING} (\.\./|%2e%2e%2f|union.*select|concat\(|base64_encode|GLOBALS|_REQUEST) [NC,OR]
 RewriteCond %{QUERY_STRING} (php://|filter=|input=|expect://) [NC]
 RewriteRule .* - [F,L]
 
-# -------------------------
-# ✅ If file or folder exists, don't rewrite
-# -------------------------
+# =========================
+# ✅ 4) IF FILE OR FOLDER EXISTS, DON'T REWRITE
+# =========================
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 # =========================
-# ✅ CLEAN URLs (YOUR ROUTES)
+# ✅ 5) CLEAN URL ROUTES
 # =========================
 RewriteRule ^$ index.php [L]
 RewriteRule ^home$ index.php [L]
@@ -59,22 +60,12 @@ RewriteRule ^profile$ profile.php [L]
 # 🔒 BLOCK SENSITIVE FILE TYPES
 # =========================
 <FilesMatch "\.(env|ini|log|sql|bak|old|zip|tar|gz|rar)$">
-    Order allow,deny
-    Deny from all
+  Require all denied
 </FilesMatch>
 
-# Block common project files (composer/node)
 <FilesMatch "^(composer\.(json|lock)|package(-lock)?\.json|yarn\.lock)$">
-    Order allow,deny
-    Deny from all
+  Require all denied
 </FilesMatch>
-
-# =========================
-# ✅ OPTIONAL: Force HTTPS
-# (Enable only if your site ALWAYS runs on https)
-# =========================
-# RewriteCond %{HTTPS} off
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 #############################################
 # ✅ END
