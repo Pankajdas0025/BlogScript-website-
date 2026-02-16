@@ -87,11 +87,11 @@ session_start();
   <?php include 'components/header.php'; ?>
   <!-- HERO -->
   <section class="hero">
-    <h1>Read. Write. Share Your Thoughts</h1>
-    <p>BlogScript is a modern blogging platform where creators share ideas, stories, and knowledge with the world.</p>
+    <h1 data-aos="fade-up">Read. Write. Share Your Thoughts</h1>
+    <p data-aos="fade-up">BlogScript is a modern blogging platform where creators share ideas, stories, and knowledge with the world.</p>
     <div class="hero-actions">
-      <a href="<?= $local ?>/register" class="primary-btn">Become a Creator</a>
-      <a href="<?= $local ?>/#blogs" class="outline-btn">Explore Blogs</a>
+      <a href="<?= $local ?>/register" class="primary-btn" data-aos="fade-right">Become a Creator</a>
+      <a href="<?= $local ?>/#blogs" class="outline-btn" data-aos="fade-left">Explore Blogs</a>
     </div>
   </section>
 
@@ -111,7 +111,7 @@ session_start();
         </div>
       </div>
     </div>
-    <div class="blog-grid">
+    <div class="blog-grid" data-aos="fade-up" data-aos-duration="1000">
     <!-- Fetch latest blogs if no search query ============================================== -->
     </div>
   </section>

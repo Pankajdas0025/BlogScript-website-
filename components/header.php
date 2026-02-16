@@ -1,4 +1,4 @@
-<?php $local = "http://localhost/B";?>
+<?php $local = "http://localhost/BlogScript";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +9,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
  <style>
     /* ========== HEADER ========== */
 @import url("../style/root.css");
@@ -81,5 +83,13 @@ header {
     </div>
   </div>
 </header>
+<script>
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    mirror: false
+  });
+  </script>
 </body>
 </html>

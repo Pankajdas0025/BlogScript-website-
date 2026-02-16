@@ -39,7 +39,7 @@ if ($result && $result->num_rows > 0) {
     $posts .= "
       <div class='blog-card'>
         <div class='post-img' width='100%' height='150px'>
-          <img src='uploads/posts/{$post_image}' alt='{$title}' height='150px' width='100%'>
+           <a href='view?id={$id}'><img src='uploads/posts/{$post_image}' alt='{$title}' height='150px' width='100%'></a>
         </div>
         <h3>{$title}</h3>
         <div id='content'>{$content}</div>

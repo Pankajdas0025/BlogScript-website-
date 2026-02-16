@@ -4,8 +4,8 @@ include 'src/db.php';
 include 'src/config.php';
 
 // Pagination settings
-$posts_per_page = 3;
-$visible_pages  = 3;
+$posts_per_page = 4;
+$visible_pages  = 4;
 
 $page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
 if ($page < 1) $page = 1;
@@ -36,7 +36,7 @@ if ($result && $result->num_rows > 0) {
     $posts .= "
       <div class='blog-card'>
         <div class='post-img' width='100%' height='150px'>
-          <img src='uploads/posts/{$post_image}' alt='{$title}' height='150px' width='100%'>
+           <a href='view?id={$id}'><img src='uploads/posts/{$post_image}' alt='{$title}' height='150px' width='100%'></a>
         </div>
         <h3>{$title}</h3>
         <div id='content'>{$content}</div>
@@ -66,7 +66,7 @@ if ($page <= 1) {
   $posts .= "<a href='#' data-page='{$prev_page}'>Prev</a>";
 }
 
-// Page numbers (only 5)
+// Page numbers
 for ($i = $start_page; $i <= $end_page; $i++) {
   if ($i == $page) {
     $posts .= "<a href='#' data-page='{$i}' class='active'>{$i}</a>";

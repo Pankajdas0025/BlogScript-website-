@@ -23,10 +23,11 @@ $password  = "carp uidg qexa uvyr";
 
 // route for server and testing
 // $server = "https://blogscriptapp.free.nf";
-$local = "http://localhost/B";
+$local = "http://localhost/BlogScript";
 
 //dashboard url
 $dashboard_url = "$local/dashboard/login.php";
+
 //admin credentials server
 $ausername = "admin@blog%2025.com";
 $apassword = "blog%2025@26"; //$2y$10$hRahGS.hLrY5//Cpx7iUkut.qEtEtChplNS2Tw6lb2RUaq64Lklci
