@@ -1,8 +1,8 @@
 <?php
-session_start();
-if (isset($_SESSION['email'])) {
-  header("Location:admin");
-  exit();
+  session_start();
+  if (isset($_SESSION['email'])) {
+    header("Location:admin");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,6 @@ if (isset($_SESSION['email'])) {
   <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
   <!-- cdn JQUARY -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="style/authentication.css">
 </head>
 
@@ -39,16 +38,11 @@ if (isset($_SESSION['email'])) {
         <input type="password" id="uPass" placeholder="Password" title="Create a strong password!" onchange="checkPass() " required>
         <input type="submit" name="Signupbtn" value="Confirm" id="Signupbtn">
         <p>Allready have an account ? &nbsp; <a href="register#" id="lbtn">Login</a></p>
-
         <!-- Model box for showing error use inline css  ================================ -->
         <div class="message">
           <div class="model-box">
-
           </div>
         </div>
-
-
-
       </form>
       <!--code For login form ------------------------------------------------------------------------------>
       <div class="box2">
@@ -108,8 +102,6 @@ if (isset($_SESSION['email'])) {
       });
     });
   </script>
-
-
   <script src="script.js"></script>
   <?php include 'components/footer.php'; ?>
 </body>

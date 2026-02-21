@@ -192,14 +192,12 @@ if ($verife_user['ID'] != $user) {
           </script>";
         }
         }
-
     ?>
       <script>
         // const input = document.getElementById("secureInput");
         // ["copy", "paste", "cut"].forEach(ev =>input.addEventListener(ev, e => e.preventDefault()));
         // Text formatting function---------------------------------------------------------------------
         function format(command) { document.execCommand(command, false, null);}
-
         // Save content to hidden input before submitting------------------------------------------------
         function saveContent() {document.getElementById("hiddenContent").value = document.getElementById("editor").innerHTML;}
       </script>

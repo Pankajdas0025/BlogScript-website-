@@ -32,12 +32,9 @@
        min-height: 75vh;
        margin: 20px auto;
        padding: 20px;
-       background: linear-gradient(180deg, #6366f1, #f43f5e);
-       box-shadow: 0 2px 8px rgba(0, 0, 0, .1)
      }
 
      .profile-container img {
-       border-radius: 50%;
        margin-bottom: 20px;
        border: 2px solid #fff
      }
@@ -100,6 +97,18 @@
        <div>Total Posts: <?= $total_posts ?></div>
        <div>Pending Posts: <?= $pending_posts ?></div>
        <div>Published Posts: <?= $published_posts ?></div>
+     </div>
+     <div class="posts">
+       <h2>All Posts</h2>
+     <?php
+     while ($post = $result->fetch_assoc()) {
+       echo "<a href='$local/view?id=" . $post['id'] . "'><div class='post'>";
+       echo "<a href='$local/view?id=" . $post['id'] . "'><img src='uploads/posts/".$post['post_image'] . "' alt='Post Image' style='width:25%;height:25%;margin-bottom:10px; border-radius:none;'></a>";
+       echo "<a href='$local/view?id=" . $post['id'] . "'><h4>" . htmlspecialchars($post['title']) . "</h4></a>";
+       echo "<small>Published on: " . $post['created_at'] . "</small>";
+       echo "</div></a>";
+     }
+     ?>
      </div>
    </div>
    <?php include 'components/footer.php'; ?>
