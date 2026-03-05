@@ -4,5 +4,5 @@
 <br>
 <img src="Images\L.png" height="20%" width="20%">
 
-<img width="100%" height="100%" alt="image" src="blogscript.png" />
+<img width="100%" height="100%" alt="image" src="Images/blogscript.png" />
 
