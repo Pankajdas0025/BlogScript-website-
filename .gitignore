@@ -1,13 +1,9 @@
-   src/config.php
+    src/config.php
     PHPMailer/
     dashboard/
     .htaccess
     uploads/
     assets/blog.sql
-    vendor/
-    .idea/
-    .DS_Store
-    node_modules/
     npm-debug.log
     yarn-error.log
     .env
@@ -16,9 +12,6 @@
     .vscode/
     *.log
     *.sql
-    *.sqlite
-    *.sqlite3
-    coverage/
-    build/
-    dist/
+
+
 
