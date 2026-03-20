@@ -2,6 +2,6 @@
 
 <a href="https://blogscriptapp.free.nf/"><img src="https://img.shields.io/badge/Visit Now-0073e6?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website Badge" /></a>
 <br>
-<img src="Images\L.png" height="20%" width="20%">
-<img width="100%" height="100%" alt="image" src="Images/blogscript.png" />
+<img src="assets\Images\L.png" height="20%" width="20%">
+<img width="100%" height="100%" alt="image" src="assets/Images/blogscript.png" />
 
