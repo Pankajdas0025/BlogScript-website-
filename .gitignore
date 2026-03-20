@@ -1,6 +1,4 @@
-#ignore
-
-    src/config.php
+   src/config.php
     PHPMailer/
     dashboard/
     .htaccess
