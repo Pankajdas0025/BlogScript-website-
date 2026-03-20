@@ -1,6 +1,6 @@
 <?php
-include 'src/db.php';
-include 'src/config.php';
+include '../src/db.php';
+include '../src/config.php';
 // Get the reset username from GET safely
 $reset_token = isset($_GET['token']) ? trim($_GET['token']) : '';
 $sql = "SELECT email, token_hash FROM password_resets";
@@ -20,9 +20,34 @@ if($result->num_rows)
 
 }
 
-if (!$isValid)
-{
-    die('Invalid or expired reset link'); /// for user friendly say to chatgpt
+if (!isset($isValid) || !$isValid) {
+    echo '<div style="
+        max-width: 400px;
+        height: 100px;
+        margin: 15% auto;
+        padding:2% 25px;
+        background: #fff;
+        border-left: 6px solid #ef4444;  /* red for error */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border-radius: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #1e293b;
+        text-align: center;
+
+    ">
+        Oops! This password reset link is invalid or has expired.<br>
+        <a href=\'reset-password\' style=\"
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: #ef4444;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+        \">Request a new one</a>
+    </div>';
+    exit;
 }
 
 else
@@ -32,9 +57,7 @@ else
             if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['update'])) {
 
                 // Get POST values safely
-
                 $newPassword = isset($_POST['new_password']) ? $_POST['new_password'] : '';
-
 
             if (strlen($newPassword) < 6) { // Minimum password length
                 echo "<script>
@@ -46,7 +69,6 @@ else
 
                 // Hash the password securely
                 $hash = password_hash($newPassword, PASSWORD_BCRYPT);
-
                 // Use prepared statements to prevent SQL injection
                 $stmt = $conn->prepare("UPDATE users SET password=? WHERE email=?");
                 $stmt->bind_param("ss", $hash, $userEmail);
@@ -63,25 +85,16 @@ else
                 $conn->close();
             }
     }
-
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Password</title>
-   <!--favicon ------------------------------------------------------------------------------>
-<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-<link rel="manifest" href="favicon_io/site.webmanifest">
-
-<!-- CSs link -->
-<link rel="stylesheet" href="style/authentication.css" type="text/css">
+    <!-- CSs link -->
+    <link rel="stylesheet" href="assets/css/authentication.css" type="text/css">
+    <?php include '../components/head.php'; ?>
 </head>
 <body>
     <div class="box">

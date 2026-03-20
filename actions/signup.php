@@ -4,11 +4,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Include PHPMailer library files
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-require 'PHPMailer/src/Exception.php';
-include 'src/db.php';
-include 'src/config.php';
+require '../PHPMailer/src/PHPMailer.php';
+require '../PHPMailer/src/SMTP.php';
+require '../PHPMailer/src/Exception.php';
+include '../src/db.php';
+include '../src/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_POST['Email']) && isset($_POST['Password']) && isset($_FILES['Profile'])) {
 
@@ -42,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
     echo json_encode($result);
     exit();
   }
-
   // All fields required
   if (!empty($Username) && !empty($Email) && !empty($Password) && !empty($Profile_img)) {
 
@@ -54,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
     $fileSize = $Profile_img['size'];
 
     // File size check must be
-    if ($fileSize > 5*1024) {
+    if ($fileSize > 500*1024) {
       $result = array("status" => "error", "message" => "File size must be 500KB or lower.");
       echo json_encode($result);
       exit();

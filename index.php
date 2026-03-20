@@ -1,15 +1,10 @@
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 include 'src/db.php';
 include 'src/config.php';
 session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,12 +41,9 @@ session_start();
   <link rel="canonical" href="https://blogscriptapp.free.nf/home/">
   <!-- Sitemap -->
   <link rel="sitemap" type="application/xml" title="Sitemap" href="src/sitemap.xml">
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <?php include 'components/head.php'; ?>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -122,7 +114,7 @@ session_start();
                 // Load all data ====================================================
                 function load_all_posts(page_v) {
                     $.ajax({
-                        url: "load_all_posts.php",
+                        url: "actions/load_all_posts.php",
                         method: "POST",
                         data: { page: page_v },
                         success: function (data) {
@@ -146,7 +138,7 @@ session_start();
                     let query = $(this).val().trim();
                     if (query !== "") {
                         $.ajax({
-                            url: "load_search_posts.php",
+                            url: "actions/load_search_posts.php",
                             method: "POST",
                             data: { search: query },
                             success: function (data) {
@@ -163,7 +155,7 @@ session_start();
             </script>
 
     <!-- FOOTER -->
-     <?php include 'chatboat.php' ?>
+     <?php include 'components/chatboat.php' ?>
     <?php include 'components/footer.php'; ?>
   </body>
 </html>

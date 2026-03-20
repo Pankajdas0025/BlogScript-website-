@@ -40,19 +40,22 @@ RewriteRule ^ - [L]
 # =========================
 RewriteRule ^$ index.php [L]
 RewriteRule ^home$ index.php [L]
-RewriteRule ^register$ authentication.php [L]
+RewriteRule ^register$ register.php [L]
 RewriteRule ^admin$ admin.php [L]
-RewriteRule ^create$ create.php [L]
-RewriteRule ^delete$ delete.php [L]
-RewriteRule ^view$ view.php [L]
-RewriteRule ^update$ update.php [L]
-RewriteRule ^reset-password$ reset.php [L]
-RewriteRule ^login$ login.php [L]
-RewriteRule ^signup$ signup.php [L]
-RewriteRule ^verification$ verification.php [L]
-RewriteRule ^update-user-password$ updatepass.php [L]
-RewriteRule ^logout$ logout.php [L]
 RewriteRule ^profile$ profile.php [L]
+# ✅CRUD ROUTES
+RewriteRule ^create$ crud/create.php [L]
+RewriteRule ^delete$ crud/delete.php [L]
+RewriteRule ^update$ crud/update.php [L]
+RewriteRule ^view$ crud/view.php [L]
+# ✅AUTH ROUTES
+RewriteRule ^update-user-password$ auth/updatepass.php [L]
+RewriteRule ^reset-password$ auth/reset.php [L]
+RewriteRule ^verification$ auth/verification.php [L]
+# ✅ACTIONS ROUTES
+RewriteRule ^login$ actions/login.php [L]
+RewriteRule ^signup$ actions/signup.php [L]
+RewriteRule ^logout$ actions/logout.php [L]
 
 </IfModule>
 

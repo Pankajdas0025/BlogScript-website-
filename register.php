@@ -12,15 +12,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signup | Login</title>
-  <!--favicon ------------------------------------------------------------------------------>
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-  <!-- cdn JQUARY -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="style/authentication.css">
+  <link rel="stylesheet" href="assets/css/authentication.css">
+  <?php include 'components/head.php'; ?>
 </head>
-
 <body>
   <!-- HEADER -->
   <?php include 'components/header.php'; ?>
@@ -61,6 +55,8 @@
     </div>
   </main>
   <!-- Jquary and AJAX reqest to send signup from data to signup.php and recive result ---------------------------------------------------------->
+  <!-- Add jQuery CDN for AJAX  -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <script>
     $(document).ready(function() {
       $("#signupForm").on("submit", function(e) {
@@ -102,7 +98,7 @@
       });
     });
   </script>
-  <script src="script.js"></script>
+  <script src="assets/js/script.js"></script>
   <?php include 'components/footer.php'; ?>
 </body>
 

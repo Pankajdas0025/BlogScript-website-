@@ -64,9 +64,8 @@ $publishedCount  = $conn->query("SELECT COUNT(*) as c FROM posts WHERE status='p
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
 <!-- jQuery Toast Plugin JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
-
+<?php include '../components/head.php'; ?>
 <style>
-@import url('../style/root.css');
 *{box-sizing:border-box}
 body{ background:#f5f7fb;font-family:'Poppins',sans-serif;}
 
@@ -90,8 +89,6 @@ nav a i { margin:0 5px; color: var(--primary);}
 .count-box p{color:black;font-size:14px}
 .count-box i{color:var(--primary);margin-right:8px ; font-size: 2rem;}
 .count-box strong{font-size:28px;color:black}
-
-
 
 /* Table */
 h2{margin-bottom:15px}

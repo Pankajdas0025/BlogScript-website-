@@ -5,6 +5,7 @@
     dashboard/
     .htaccess
     uploads/
+    assets/blog.sql
     vendor/
     .idea/
     .DS_Store

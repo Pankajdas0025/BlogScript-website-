@@ -1,19 +1,22 @@
-<!--Load all post data with pagination -->
+<!--Load all search post data with pagination -->
 <?php
-include 'src/db.php';
-include 'src/config.php';
+include '../src/db.php';
+include '../src/config.php';
 
 // Pagination settings
-$posts_per_page = 4;
-$visible_pages  = 4;
+$posts_per_page = 3;
+$visible_pages  = 3;
+if (isset($_POST['search']) && !empty(trim($_POST['search']))) {
+    $search_term = $conn->real_escape_string(trim($_POST['search']));
+} else {
+    $search_term = '';
+}
 
-$page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
-if ($page < 1) $page = 1;
-
+$page = 1;
 $offset = ($page - 1) * $posts_per_page;
 
 // Count total posts
-$count_query  = "SELECT COUNT(*) AS total FROM posts WHERE status='published'";
+$count_query  = "SELECT COUNT(*) AS total FROM posts WHERE status='published' AND (title LIKE '%$search_term%' OR content LIKE '%$search_term%')";
 $count_result = $conn->query($count_query);
 $total_posts  = ($count_result && $count_result->num_rows > 0) ? (int)$count_result->fetch_assoc()['total'] : 0;
 
@@ -21,7 +24,7 @@ $total_pages = ($total_posts > 0) ? (int)ceil($total_posts / $posts_per_page) : 
 if ($page > $total_pages) $page = $total_pages;
 
 // Fetch posts
-$query  = "SELECT * FROM posts WHERE status='published' ORDER BY created_at DESC LIMIT $posts_per_page OFFSET $offset";
+$query  = "SELECT * FROM posts WHERE status='published' AND (title LIKE '%$search_term%' OR content LIKE '%$search_term%') ORDER BY created_at DESC LIMIT $posts_per_page OFFSET $offset";
 $result = $conn->query($query);
 
 $posts = "";
@@ -30,8 +33,8 @@ if ($result && $result->num_rows > 0) {
     $title   = htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8');
     $post_image = $row['post_image'];
     $content = $row['content'];
-    $created = htmlspecialchars($row['created_at'], ENT_QUOTES, 'UTF-8');
-    $id      = (int)$row['id'];
+    $created = date('d M Y', strtotime($row['created_at']));
+    $id = (int)$row['id'];
 
     $posts .= "
       <div class='blog-card'>
@@ -39,7 +42,6 @@ if ($result && $result->num_rows > 0) {
            <a href='view?id={$id}'><img src='uploads/posts/{$post_image}' alt='{$title}' height='150px' width='100%'></a>
         </div>
         <h3>{$title}</h3>
-        <div id='content'>{$content}</div>
         <div class='card-footer'>
           <a href='view?id={$id}'>Read more <i class='fa fa-angle-right'></i></a>
           <span><i class='fa fa-calendar'></i>{$created}</span>
@@ -66,7 +68,7 @@ if ($page <= 1) {
   $posts .= "<a href='#' data-page='{$prev_page}'>Prev</a>";
 }
 
-// Page numbers
+// Page numbers (only 5)
 for ($i = $start_page; $i <= $end_page; $i++) {
   if ($i == $page) {
     $posts .= "<a href='#' data-page='{$i}' class='active'>{$i}</a>";

@@ -1,7 +1,7 @@
 
 <?php
-include 'src/db.php';
-include 'src/config.php';
+include '../src/db.php';
+include '../src/config.php';
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $Email = mysqli_real_escape_string($conn, strip_tags($_POST['uEmail'])); // secure -> mysqli_real_escape_string

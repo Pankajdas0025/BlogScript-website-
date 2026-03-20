@@ -1,117 +1,212 @@
- <?php
-  include 'src/db.php';
-  include 'src/config.php';
-  $user_id = $_GET['id'];
-  $result = $conn->query("SELECT * FROM posts JOIN users ON posts.user_id = users.id WHERE posts.user_id=$user_id");
-  $post = $result->fetch_assoc();
-  $total_posts = $conn->query("SELECT COUNT(*) AS total FROM posts WHERE user_id='$user_id'")->fetch_assoc()['total'];
-  $pending_posts = $conn->query("SELECT COUNT(*) AS pending FROM posts WHERE user_id='$user_id' AND status='pending'")->fetch_assoc()['pending'];
-  $published_posts = $conn->query("SELECT COUNT(*) AS published FROM posts WHERE user_id='$user_id' AND status='published'")->fetch_assoc()['published'];
- if (!$post) {
-    header("Location: index.php");
-    exit();
- }
-  ?>
- <!DOCTYPE html>
- <html lang="en">
+<?php
+include 'src/db.php';
+include 'src/config.php';
 
- <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title><?= htmlspecialchars($post['USER_NAME']) ?></title>
-   <!-- Favicon -->
-   <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-   <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-   <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+$user_id = $_GET['id'];
 
-   <style>
-     @import url('style/root.css');
+$result = $conn->query("SELECT * FROM posts
+JOIN users ON posts.user_id = users.id
+WHERE posts.user_id=$user_id");
 
-     .profile-container {
-       max-width: 500px;
-       min-height: 75vh;
-       margin: 20px auto;
-       padding: 20px;
-     }
+$post = $result->fetch_assoc();
 
-     .profile-container img {
-       margin-bottom: 20px;
-       border: 2px solid #fff
-     }
+if (!$post) {
+  header("Location: index.php");
+  exit();
+}
 
-     .profile-header {
-       text-align: center;
-       margin-bottom: 20px
-     }
+$user = $post;
 
-     .profile-header h1 {
-       margin: 0;
-       font-size: 2rem
-     }
+$total_posts = $conn->query("SELECT COUNT(*) AS total FROM posts WHERE user_id='$user_id'")->fetch_assoc()['total'];
+$pending_posts = $conn->query("SELECT COUNT(*) AS pending FROM posts WHERE user_id='$user_id' AND status='pending'")->fetch_assoc()['pending'];
+$published_posts = $conn->query("SELECT COUNT(*) AS published FROM posts WHERE user_id='$user_id' AND status='published'")->fetch_assoc()['published'];
+?>
 
-     .profile-header p {
-       margin: 5px 0;
-       color: #ffffffff
-     }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?= htmlspecialchars($user['USER_NAME']) ?></title>
 
-     .profile-stats {
-       display: flex;
-       justify-content: space-around;
-       margin-top: 20px
-     }
+<style>
+@import url("style/root.css");
+/* Container */
+.profile-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 15px;
+}
 
-     .profile-stats div {
-       text-align: center;
-       background-color: #ffffffff;
-       padding: 10px;
-       font-weight: 700
-     }
+/* Banner */
+.profile-banner {
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 12px;
+  position: relative;
+}
 
-     @media (max-width:768px) {
-       .profile-header h1 {
-         font-size: 1.5rem
-       }
+/* Avatar */
+.profile-avatar {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-       .profile-stats {
-         flex-direction: column;
-         align-items: center
-       }
+.profile-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  object-fit: cover;
+}
 
-       .profile-stats div {
-         margin-bottom: 10px;
-         width: 80%
-       }
-     }
-   </style>
- </head>
+/* Info */
+.profile-info {
+  text-align: center;
+  margin-top: 70px;
+}
 
- <body>
-   <?php include 'components/header.php'; ?>
-   <div class="profile-container">
-     <img src="uploads/users/<?= $post['PROFILE_IMG'] ?>" alt="Avatar" style="width:150px;height:150px;border-radius:50%;display:block;margin:0 auto 20px auto;">
-     <div class="profile-header">
-       <h1><?= htmlspecialchars($post['USER_NAME']) ?></h1>
-       <!-- <p><?= htmlspecialchars($post['EMAIL']) ?></p> -->
-     </div>
-     <div class="profile-stats">
-       <div>Total Posts: <?= $total_posts ?></div>
-       <div>Pending Posts: <?= $pending_posts ?></div>
-       <div>Published Posts: <?= $published_posts ?></div>
-     </div>
-     <div class="posts">
-       <h2>All Posts</h2>
-     <?php
-     while ($post = $result->fetch_assoc()) {
-       echo "<a href='$local/view?id=" . $post['id'] . "'><div class='post'>";
-       echo "<a href='$local/view?id=" . $post['id'] . "'><img src='uploads/posts/".$post['post_image'] . "' alt='Post Image' style='width:25%;height:25%;margin-bottom:10px; border-radius:none;'></a>";
-       echo "<a href='$local/view?id=" . $post['id'] . "'><h4>" . htmlspecialchars($post['title']) . "</h4></a>";
-       echo "<small>Published on: " . $post['created_at'] . "</small>";
-       echo "</div></a>";
-     }
-     ?>
-     </div>
-   </div>
-   <?php include 'components/footer.php'; ?>
- </body>
+.profile-info h1 {
+  margin: 10px 0;
+}
 
- </html>
+/* Stats */
+.profile-stats {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.stat-box {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.stat-box h2 {
+  margin: 0;
+  color:var(--primary);
+}
+
+/* Posts */
+.posts {
+  margin-top: 40px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.post-card {
+  background: #fff;
+  border-radius: 1px;
+  padding:15px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #000;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+.post-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.post-card .content {
+  padding: 10px;
+}
+
+.post-card h4 {
+  margin: 0 0 5px;
+  font-size: 1rem;
+}
+
+.post-card small {
+  color: #777;
+}
+
+/* Mobile */
+@media(max-width:768px) {
+  .profile-stats {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+<?php include 'components/header.php'; ?>
+<div class="profile-container">
+
+  <!-- Banner -->
+  <div class="profile-banner">
+    <div class="profile-avatar">
+      <img src="uploads/users/<?= $user['PROFILE_IMG'] ?>" alt="Avatar">
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="profile-info">
+    <h1><?= htmlspecialchars($user['USER_NAME']) ?></h1>
+  </div>
+
+  <!-- Stats -->
+  <div class="profile-stats">
+    <div class="stat-box">
+      <h2><?= $total_posts ?></h2>
+      <p>Total Posts</p>
+    </div>
+    <div class="stat-box">
+      <h2><?= $pending_posts ?></h2>
+      <p>Pending</p>
+    </div>
+    <div class="stat-box">
+      <h2><?= $published_posts ?></h2>
+      <p>Published</p>
+    </div>
+  </div>
+
+  <!-- Posts -->
+  <div class="posts">
+    <h2>All Posts</h2>
+
+    <div class="post-grid">
+      <?php
+      // first post already used, show it manually
+      echo "<a href='$local/view?id=".$user['id']."' class='post-card'>";
+      echo "<img src='uploads/posts/".$user['post_image']."'>";
+      echo "<div class='content'>";
+      echo "<h4>".htmlspecialchars($user['title'])."</h4>";
+      echo "<small>".$user['created_at']."</small>";
+      echo "</div></a>";
+
+      while ($row = $result->fetch_assoc()) {
+        echo "<a href='$local/view?id=".$row['id']."' class='post-card'>";
+        echo "<img src='uploads/posts/".$row['post_image']."'>";
+        echo "<div class='content'>";
+        echo "<h4>".htmlspecialchars($row['title'])."</h4>";
+        echo "<small>".$row['created_at']."</small>";
+        echo "</div></a>";
+      }
+      ?>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

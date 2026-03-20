@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-  <meta charset='UTF-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
   <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' />
   <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'></script>
-
   <style>
-    @import url('style/root.css');
+    @import url('../assets/css/root.css');
 
     .chatbot-widget { position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     .chatbot-toggle { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) , var(--secondary)); border: 1px solid white; color: white; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; animation: pulseShadow 2s infinite; }
@@ -65,9 +60,6 @@
     .chatbot-messages::-webkit-scrollbar { width: 6px; }
     .chatbot-messages::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
   </style>
-</head>
-
-<body>
   <div class='chatbot-widget'>
     <button class='chatbot-toggle' id='chatbotToggle' title='Open Chat'>😎</button>
 
@@ -288,5 +280,4 @@
       bot.init();
     });
   </script>
-</body>
-</html>
+

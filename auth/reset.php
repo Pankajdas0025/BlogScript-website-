@@ -3,20 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password</title>
-   <!--favicon ------------------------------------------------------------------------------>
-<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-
-<!-- CSs link -->
-<link rel="stylesheet" href="style/authentication.css" type="text/css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-<!-- cdn JQUARY -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <title>Reset Password</title>
+  <!-- CSs link -->
+  <link rel="stylesheet" href="assets/css/authentication.css" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <?php include '../components/head.php'; ?>
 </head>
 <body>
-    <?php include 'components/header.php';?>
+    <?php include '../components/header.php';?>
     <div class="box">
         <h2 class="sh">Reset Password🔐</h2>
         <form method="POST">
@@ -29,11 +23,11 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-require 'PHPMailer/src/Exception.php';
-include 'src/db.php';
-include 'src/config.php';
+require '../PHPMailer/src/PHPMailer.php';
+require '../PHPMailer/src/SMTP.php';
+require '../PHPMailer/src/Exception.php';
+include '../src/db.php';
+include '../src/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['reset'])) {
     $token = bin2hex(random_bytes(32)); // 64-char secure token
@@ -158,6 +152,6 @@ $(function () {
     }
 }
 ?>
-  <?php include 'components/footer.php';?>
+  <?php include '../components/footer.php';?>
 </body>
 </html>

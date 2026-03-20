@@ -1,6 +1,6 @@
  <?php
-include 'src/db.php';
-include 'src/config.php';
+include '../src/db.php';
+include '../src/config.php';
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM posts JOIN users ON posts.user_id = users.id WHERE posts.id=$id");
 $post = $result->fetch_assoc();
@@ -9,23 +9,16 @@ $post = $result->fetch_assoc();
     exit();
  }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= htmlspecialchars($post['title']) ?></title>
-
-  <!--favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-  <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <?php include '../components/head.php'; ?>
 
   <style>
-    @import url('style/root.css');
+    @import url('assets/css/root.css');
     .Textarea {background:transparent; width: 100%; max-width: 1000px; padding: 25px;  margin: 50px auto; animation: fadeIn 0.5s ease-in-out; }
    @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -45,20 +38,17 @@ $post = $result->fetch_assoc();
    #footer span i{margin-right:6px;color:#000;}
     /* Responsive */
     @media (max-width: 700px)
-    {
-.Textarea{height:auto;padding:15px}
-.Textarea h2{font-size:18px;flex-direction:column;align-items:flex-start;gap:10px}
-.post_image{text-align:center;margin-bottom:20px;background-color:black; width: 100%; height:250px;}
-
-
-.content{font-size:14px}
-#footer{font-size:13px;flex-direction:column;align-items:flex-start}
-
-    }
+      {
+  .Textarea{height:auto;padding:15px}
+  .Textarea h2{font-size:18px;flex-direction:column;align-items:flex-start;gap:10px}
+  .post_image{text-align:center;margin-bottom:20px;background-color:black; width: 100%; height:250px;}
+  .content{font-size:14px}
+  #footer{font-size:13px;flex-direction:column;align-items:flex-start}
+      }
   </style>
 </head>
 <body>
-  <?php include 'components/header.php'; ?>
+  <?php include '../components/header.php'; ?>
   <div class="Textarea">
     <div class="post_image">
       <img src="uploads/posts/<?= htmlspecialchars($post['post_image']) ?>" alt="<?= htmlspecialchars($post['title']) ?>" >
@@ -89,6 +79,6 @@ $post = $result->fetch_assoc();
       });
     }
   </script>
-  <?php include 'components/footer.php'; ?>
+  <?php include '../components/footer.php'; ?>
 </body>
 </html>
