@@ -1,9 +1,8 @@
 <?php
 include 'src/db.php';
 include 'src/config.php';
-
+session_start();
 $user_id = $_GET['id'];
-
 $result = $conn->query("SELECT * FROM posts
 JOIN users ON posts.user_id = users.id
 WHERE posts.user_id=$user_id");
@@ -14,9 +13,7 @@ if (!$post) {
   header("Location: index.php");
   exit();
 }
-
 $user = $post;
-
 $total_posts = $conn->query("SELECT COUNT(*) AS total FROM posts WHERE user_id='$user_id'")->fetch_assoc()['total'];
 $pending_posts = $conn->query("SELECT COUNT(*) AS pending FROM posts WHERE user_id='$user_id' AND status='pending'")->fetch_assoc()['pending'];
 $published_posts = $conn->query("SELECT COUNT(*) AS published FROM posts WHERE user_id='$user_id' AND status='published'")->fetch_assoc()['published'];
@@ -28,9 +25,12 @@ $published_posts = $conn->query("SELECT COUNT(*) AS published FROM posts WHERE u
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= htmlspecialchars($user['USER_NAME']) ?></title>
+<?php include 'components/head.php';?>
+
+
 
 <style>
-@import url("style/root.css");
+@import url("assets/css/root.css");
 /* Container */
 .profile-container {
   max-width: 1000px;
@@ -148,7 +148,7 @@ $published_posts = $conn->query("SELECT COUNT(*) AS published FROM posts WHERE u
 </head>
 
 <body>
-<?php include 'components/header.php'; ?>
+<?php include 'components/header.php';?>
 <div class="profile-container">
 
   <!-- Banner -->
@@ -203,10 +203,8 @@ $published_posts = $conn->query("SELECT COUNT(*) AS published FROM posts WHERE u
       }
       ?>
     </div>
-
   </div>
-
 </div>
-
+<?php include 'components/footer.php';?>
 </body>
 </html>

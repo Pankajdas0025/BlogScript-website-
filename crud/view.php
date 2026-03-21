@@ -1,6 +1,7 @@
  <?php
 include '../src/db.php';
 include '../src/config.php';
+session_start();
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM posts JOIN users ON posts.user_id = users.id WHERE posts.id=$id");
 $post = $result->fetch_assoc();
@@ -57,12 +58,10 @@ $post = $result->fetch_assoc();
       <?= htmlspecialchars($post['title']) ?>
       <button onclick="copyLink()"><i class="fa fa-share-alt"></i></button>
     </h2>
-
     <div class="content">
       <?= $post['content'] ?>
       <!-- HTML formatting preserved -->
     </div>
-
     <div id="footer">
       <span><i class="fa fa-user"></i><a href="profile?id=<?= $post['user_id'] ?>"><?= "Blogger:" . $post['USER_NAME'] ?></a></span>
       <span><i class="fa fa-calendar"></i> <?= $post['created_at'] ?></span>

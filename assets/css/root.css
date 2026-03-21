@@ -20,7 +20,17 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
-  background-color: #d4d8dd;
+  padding:0 10px;
+
 }
+@media (max-width: 768px) {
+  body
+  {
+      padding: 0px;
+
+  }
+
+}
+
 
 

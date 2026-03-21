@@ -19,10 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($response->num_rows == 1) {
         $row = $response->fetch_assoc();
         if (password_verify($Pass, $row['PASSWORD'])) {
-
             session_set_cookie_params(0);
             session_start();
-            $_SESSION['email'] = $Email;
+
+            $stmt = $conn->prepare("SELECT ID FROM users WHERE EMAIL = ?");
+            $stmt->bind_param("s", $Email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            if ($row) {
+                $_SESSION['email'] = $Email;
+                $_SESSION['id'] = $row['ID'];
+            }
             header("Location: admin");
             exit();
         } else {

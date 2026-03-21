@@ -27,8 +27,8 @@
       <form autocomplete="off" id="signupForm">
         <input type="text" id="uName" placeholder="Enter your name" title="Your Full name " onchange="checkName() " required>
         <input type="email" id="uEmail" placeholder="Enter your email" title="Your valid email" onchange="checkEmail() " required>
-        <small> * Upload your Profile image</small>
         <input type="file" id="uProfile" title=" 🧐 Upload Your Profile Image" required>
+        <small>&nbsp;   Upload your Profile image</small>
         <input type="password" id="uPass" placeholder="Password" title="Create a strong password!" onchange="checkPass() " required>
         <input type="submit" name="Signupbtn" value="Confirm" id="Signupbtn">
         <p>Allready have an account ? &nbsp; <a href="register#" id="lbtn">Login</a></p>
@@ -49,7 +49,7 @@
           <input type="password" name="uPass" placeholder="Password" required>
           <input type="submit" name="Loginbtn" value="Login" id="Loginbtn">
           <a style="margin:1.2px auto;" href="reset-password" id="Sibtn">Forgot Password</a>
-          <p>New user? &nbsp; <a href="#" id="Sibtn">Sign Up</a></p>
+          <p>New user? &nbsp; <a href="" id="Sibtn">Sign Up</a></p>
         </form>
       </div>
     </div>

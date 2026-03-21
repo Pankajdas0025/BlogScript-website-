@@ -4,9 +4,6 @@ CREATE TABLE admins (
   password_hash varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO admins (id, username, password_hash) VALUES
-(1, 'admin@blog%2025.com', '$2y$10$hRahGS.hLrY5//Cpx7iUkut.qEtEtChplNS2Tw6lb2RUaq64Lklci');
-
 -- --------------------------------------------------------
 
 CREATE TABLE password_resets (
@@ -47,9 +44,6 @@ CREATE TABLE users (
   VERIFICATION_CODE int(11) DEFAULT NULL,
   VERIFICATION_STATUS enum('Success','Failed') DEFAULT 'Failed'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-INSERT INTO users (ID, USER_NAME, EMAIL, PASSWORD, PROFILE_IMG, VERIFICATION_CODE, VERIFICATION_STATUS) VALUES
-(1, 'Pankaj Kumar Das', 'useremail5569121@gmail.com', '$2y$10$cKDz2sVDrpStDUi8upAeeepFLrjIQBEOM9aAM4gPGod61J0HG4yNW', '6974c7ceba227.png', 665656, 'Success');
 
 -- --------------------------------------------------------
 

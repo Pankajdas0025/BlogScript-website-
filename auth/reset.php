@@ -1,4 +1,8 @@
 
+
+<?php
+session_start();
+?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,7 +16,7 @@
 <body>
     <?php include '../components/header.php';?>
     <div class="box">
-        <h2 class="sh">Reset Password🔐</h2>
+        <h2 class="sh" style="padding: 25px; margin:25px 0;">Reset Password🔐  </h2>
         <form method="POST">
             <input type="text" name="username" placeholder="Enter Username or Email.." required>
             <input type="submit" name="reset"  value="Reset Link" style="background-color: rgb(156, 231, 156);">
@@ -28,6 +32,8 @@ require '../PHPMailer/src/SMTP.php';
 require '../PHPMailer/src/Exception.php';
 include '../src/db.php';
 include '../src/config.php';
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['reset'])) {
     $token = bin2hex(random_bytes(32)); // 64-char secure token

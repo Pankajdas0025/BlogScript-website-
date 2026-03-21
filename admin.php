@@ -87,11 +87,11 @@ $published_posts = $conn->query("SELECT COUNT(*) AS published FROM posts WHERE u
     color: #111827;
 }
 
-.userlog a {
+.logout a {
     margin-left: 10px;
-    padding: 8px 14px;
+    padding: 2px 3px;
     border-radius: 8px;
-    background: #6366f1;
+    background: #8384b1;
     color: #fff;
     text-decoration: none;
     font-weight: 500;
@@ -99,7 +99,7 @@ $published_posts = $conn->query("SELECT COUNT(*) AS published FROM posts WHERE u
     transition: all 0.3s ease;
 }
 
-.userlog a:hover {
+.logout a:hover {
     background: #4f46e5;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -242,9 +242,6 @@ table img {
         padding: 15px;
     }
 
-    .userlog a {
-        margin-left: 0;
-    }
 
     .search input {
         width: 100%;
@@ -278,7 +275,7 @@ table img {
         </div>
         <div class="logout">
             BLOGGER-ID/<?= $Blogger_id ?>
-            <a href="logout" onclick="return confirm('Are you sure to Logout?')" style="background-color: #6366f1; padding: 5px 10px; border-radius: 5px; color: #ffffff; margin-left: 15px; text-decoration: none;">
+            <a href="logout" onclick="return confirm('Are you sure to Logout?')">
             <i class="fa-solid fa-right-from-bracket fa-flip-horizontal" style="color: #080512ff;"></i> Log out
             </a>
         </div>

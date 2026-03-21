@@ -76,7 +76,7 @@ session_start();
 </head>
 <body>
   <!-- HEADER -->
-  <?php include 'components/header.php'; ?>
+  <?php include 'components/header.php';?>
   <!-- HERO -->
   <section class="hero">
     <h1 data-aos="fade-up">Read. Write. Share Your Thoughts</h1>

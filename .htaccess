@@ -43,6 +43,7 @@ RewriteRule ^home$ index.php [L]
 RewriteRule ^register$ register.php [L]
 RewriteRule ^admin$ admin.php [L]
 RewriteRule ^profile$ profile.php [L]
+RewriteRule ^setting$ setting.php [L]
 # ✅CRUD ROUTES
 RewriteRule ^create$ crud/create.php [L]
 RewriteRule ^delete$ crud/delete.php [L]
