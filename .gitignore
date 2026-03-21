@@ -1,0 +1,11 @@
+*.temp
+*.log
+*.sql/
+src/
+PHPMailer/
+assets/blog.sql
+.htaccess
+uploads/
+dashboard/
+
+
