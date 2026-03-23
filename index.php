@@ -80,14 +80,14 @@ session_start();
   <!-- HERO -->
   <section class="hero">
     <h1 data-aos="fade-up">Read. Write. Share Your Thoughts</h1>
-    <p data-aos="fade-up">BlogScript is a modern blogging platform where creators share ideas, stories, and knowledge with the world.</p>
+    <p data-aos="fade-up">BlogScript is a platform for all tech enthusiasts to read, write, and share technology-based blogs and ideas.</p>
     <div class="hero-actions">
       <a href="<?= $local ?>/register" class="primary-btn" data-aos="fade-right">Become a Creator</a>
       <a href="<?= $local ?>/#blogs" class="outline-btn" data-aos="fade-left">Explore Blogs</a>
     </div>
   </section>
 
-  <!-- BLOGS -->
+  <!-- Latst BLOGS -->
   <section class="container" id="blogs">
     <div class="section-header">
       <div class="header-title">
@@ -98,7 +98,6 @@ session_start();
         <div>
           <form id="searchForm">
             <input type="text" id="search" name="search" placeholder="Enter keywords..." style="font-size:16px; font-family:'Poppins', sans-serif;">
-             <!-- <button type="submit">Search</button> -->
           </form>
         </div>
       </div>
@@ -107,9 +106,59 @@ session_start();
     <!-- Fetch latest blogs if no search query ============================================== -->
     </div>
   </section>
+  <!-- Latst BLOGS -->
+  <section class="container" id="blogs">
+    <div class="section-header">
+      <div class="header-title">
+          <h2>Old Blogs</h2>
+      </div>
+    </div>
+    <div class="old_blog-grid" data-aos="fade-up" data-aos-duration="1000">
+    <!-- Fetch old blogs if no search query ============================================== -->
+    </div>
+  </section>
+  <!-- News Letter Section -->
+  <section class="newsletter">
+      <div class="newsletter-box">
+          <h2>Stay Updated 🚀</h2>
+          <p>Join our community of tech enthusiasts and get the latest blogs directly in your inbox.</p>
+          <form id="newsletterForm" class="newsletter-form">
+              <input type="email" name="email" id="email" placeholder="Enter your email" required>
+              <button type="submit">Subscribe</button>
+          </form>
+          <div id="newsletterMsg"></div>
+      </div>
+  </section>
+  <!-- Stats   -->
+<section class="stats-section" data-aos="fade">
+    <div class="container stats-grid">
+        <div class="stat-card" data-aos="fade-left">
+            <div class="stat-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <h2 class="counter" data-target="200">0</h2>
+            <p>Total Users</p>
+        </div>
+        <div class="stat-card" data-aos="fade">
+            <div class="stat-icon">
+                <i class="fa-solid fa-blog"></i>
+            </div>
+            <h2 class="counter" data-target="500">0</h2>
+            <p>Total Blogs</p>
+        </div>
+        <div class="stat-card" data-aos="fade-right">
+            <div class="stat-icon">
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </div>
+            <h2 class="counter" data-target="250">0</h2>
+            <p>Subscribers</p>
+        </div>
+    </div>
+</section>
+
       <!-- Add jQuery CDN for AJAX  -->
-      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-            <script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script>
             $(document).ready(function () {
                 // Load all data ====================================================
                 function load_all_posts(page_v) {
@@ -119,19 +168,30 @@ session_start();
                         data: { page: page_v },
                         success: function (data) {
                             $(".blog-grid").html(data);
+
                         }
                     });
                 }
                 // First load on page start
                 load_all_posts();
-
                 // Data Pagination ===============================================
                 $(document).on("click", "#pagination a", function (e) {
                     e.preventDefault();
                     let page_value = $(this).data("page");
                     load_all_posts(page_value);
                 });
-
+                // Load old data ====================================================
+                function load_old_posts(page_v) {
+                    $.ajax({
+                        url: "actions/load_old_posts.php",
+                        method: "POST",
+                        data: { page: page_v },
+                        success: function (data) {
+                            $(".old_blog-grid").html(data);
+                        }
+                    });
+                }
+                load_old_posts();
 
                 // Load SEARCH data ONLY ON KEY UP ====================================================
                 $("#search").on("keyup", function () {
@@ -150,12 +210,63 @@ session_start();
                         load_all_posts();
                     }
                 });
-
+                $("#newsletterForm").submit(function(e) {
+                    e.preventDefault();
+                    let email = $("#email").val();
+                    console.log("Sending:", email);
+                    $.ajax({
+                        url: "actions/newsletter.php",
+                        method: "POST",
+                        data: { email: email },
+                        dataType: "json",
+                        success: function(data) {
+                            console.log("Response:", data);
+                            $("#newsletterMsg")
+                                .text(data.message)
+                                .removeClass('success error')
+                                .addClass(data.success ? 'success' : 'error');
+                            if (data.success) {
+                                $("#email").val('');
+                            }
+                        },
+                        error: function(xhr) {
+                            console.log("Error:", xhr.responseText);
+                            $("#newsletterMsg").text("Server error. Check console.");
+                        }
+                    });
+                });
             });
-            </script>
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    const counters = document.querySelectorAll('.counter');
+
+    counters.forEach(counter => {
+        const target = +counter.dataset.target;
+        let count = 0;
+
+        const speed = 200; // smaller = faster
+        const step = target / speed;
+
+        const update = () => {
+            count += step;
+
+            if (count < target) {
+                counter.innerText = Math.floor(count);
+                requestAnimationFrame(update);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        update();
+    });
+
+});
+
+          </script>
     <!-- FOOTER -->
-     <?php include 'components/chatboat.php' ?>
+    <?php include 'components/chatboat.php' ?>
     <?php include 'components/footer.php'; ?>
   </body>
 </html>

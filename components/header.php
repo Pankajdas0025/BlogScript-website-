@@ -46,14 +46,11 @@ header { position: sticky; top: 0; background:#FFF; box-shadow: 0 2px 10px rgba(
   display: block;
 }
 @media (max-width: 768px) {
+  header {top:-50px;}
   .nav {  flex-direction: column;gap: 15px;padding:10px 0 20px 0px;}
   .nav a {margin-left: 12px;}
   /* Menu */
-.user-menu {
-
-  left:-100%;
-}
-
+.user-menu {left:-100%;}
   }
 </style>
  <!-- HEADER -->
@@ -63,9 +60,8 @@ header { position: sticky; top: 0; background:#FFF; box-shadow: 0 2px 10px rgba(
     <div class="nav-links">
       <a href="<?= $local?>/"><i class="fa-solid fa-house"></i> Home</a>
       <a href="<?= $local?>/#blogs"><i class="fa-solid fa-square-pen"></i> Blogs</a>
-      <?php if (!isset($_SESSION['email']) && !isset($_SESSION['id'])): ?>
-        <a href="<?= $local ?>/register" class="btn">Login</a>
-      <?php else: ?>
+
+      <?php if (isset($_SESSION['email']) && isset($_SESSION['id'])): ?>
         <!-- Custom Dropdown -->
         <div class="user-dropdown" id="userDropdown">
           <div class="user-btn" onclick="toggleDropdown()">
@@ -76,9 +72,12 @@ header { position: sticky; top: 0; background:#FFF; box-shadow: 0 2px 10px rgba(
             <a href="<?= $local ?>/admin">Admin Panel</a>
             <a href="<?= $local ?>/setting">Setting</a>
             <a href="<?= $local ?>/logout">Logout</a>
-
           </div>
         </div>
+      <?php elseif(isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] == true): ?>
+            <a href="<?= $local ?>/dashboard/author.php" class="btn">Admin</a>
+      <?php else: ?>
+           <a href="<?= $local ?>/register" class="btn">Login</a>
       <?php endif; ?>
     </div>
   </div>
@@ -87,7 +86,6 @@ header { position: sticky; top: 0; background:#FFF; box-shadow: 0 2px 10px rgba(
   function toggleDropdown() {
   document.getElementById("userDropdown").classList.toggle("active");
 }
-
 // Close when clicking outside
 document.addEventListener("click", function(e) {
   let dropdown = document.getElementById("userDropdown");

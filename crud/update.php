@@ -177,20 +177,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title']) && isset($_P
   $new_post_image = isset($_FILES['post_image']) ? $_FILES['post_image'] : null;
   $database_post_image = $old_post_image;
 
-  if ($new_post_image && $new_post_image['error'] === UPLOAD_ERR_OK) {
+  if ($new_post_image && $new_post_image['error'] === UPLOAD_ERR_OK)
+    {
 
     $fileExt = strtolower(pathinfo($new_post_image['name'], PATHINFO_EXTENSION));
     $allowed_Ext = ['jpg', 'jpeg', 'png'];
     $fileSize = (int)$new_post_image['size'];
 
-    if ($fileSize > 2097152) {
-      $result = ['status' => 'error', 'message' => 'File size must be 2mb or lower.'];
+    if ($fileSize > 500 * 1024) {
+      $result = ['status' => 'error', 'message' => 'File size must be 500Kb or lower.'];
     } else if (in_array($fileExt, $allowed_Ext)) {
       $database_post_image = uniqid() . '.' . $fileExt;
       $image_folder = '../uploads/posts/' . $database_post_image;
     } else {
       $result = ['status' => 'error', 'message' => 'This extension file not allowed, Please choose a JPG or PNG file.'];
     }
+
   }
 
   if (!isset($result) || $result['status'] != 'error') {
@@ -202,7 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title']) && isset($_P
 
       if ($new_post_image && $new_post_image['error'] === UPLOAD_ERR_OK) {
         if (!empty($old_post_image) && file_exists('uploads/posts/' . $old_post_image)) {
-          if($old_post_image != 'default.jpg')
+          if($old_post_image != 'default.png')
             {
               unlink('../uploads/posts/' . $old_post_image);
             }

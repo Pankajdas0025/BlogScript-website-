@@ -3,7 +3,7 @@
 *.sql/
 src/
 PHPMailer/
-assets/blog.sql
+blog.sql
 .htaccess
 uploads/
 dashboard/
