@@ -10,7 +10,6 @@ header { position: sticky; top: 0; background:#FFF; box-shadow: 0 2px 10px rgba(
 .logo { font-size: 1.8rem; font-weight: 700;color: var(--primary); display: flex;align-items: center; align-content: center;}
 .nav a { text-decoration: none; margin-left: 22px;  color: var(--text); font-weight: 500;}
 .nav .btn , .user-btn{background: var(--primary);color: var(--white);padding: 8px 18px; border-radius: 20px; box-shadow: 2px 6px 14px var(--secondary) inset, -2px 6px 14px rgb(244, 244, 244) ;}
-
 /* Dropdown */
 .user-dropdown {
   position: relative;
@@ -94,7 +93,6 @@ document.addEventListener("click", function(e) {
     dropdown.classList.remove("active");
   }
 });
-
   AOS.init({
     duration: 800,
     easing: 'ease-in-out',

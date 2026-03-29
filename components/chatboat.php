@@ -6,12 +6,10 @@
 
     .chatbot-widget { position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     .chatbot-toggle { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) , var(--secondary)); border: 1px solid white; color: white; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; animation: pulseShadow 2s infinite; }
-
     @keyframes pulseShadow { 0% {box-shadow: 0 0 0 0 rgba(244, 63, 94, 1);} 70%{box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);} 100% {box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);} }
 
     .chatbot-toggle:hover { transform: rotate(360deg); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
     .chatbot-toggle:active { transform: scale(0.95); }
-
     .chatbot-popup { position: fixed; bottom: 10px; right: 10px; width: 350px; height: 500px; background: white; border-radius: 12px; box-shadow: 0 5px 40px rgba(0,0,0,0.16); display: flex; flex-direction: column; animation: slideUp 0.3s ease; z-index: 1001; }
     @keyframes slideUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
 
@@ -26,23 +24,18 @@
 
     .message-bot { justify-content: flex-start; }
     .message-user { justify-content: flex-end; }
-
     .message-content { max-width: 80%; padding: 0.75rem 1rem; border-radius: 12px; word-wrap: break-word; line-height: 1.4; font-size: 0.95rem; }
     .message-bot .message-content { background: white; color: #333; border: 1px solid #e0e0e0; }
     .message-user .message-content { background: var(--secondary); color: white; }
-
     .chatbot-input-area { padding: 1rem; border-top: 1px solid #e0e0e0; background: white; border-radius: 0 0 12px 12px; }
     .chatbot-input-group { display: flex; gap: 0.5rem; }
     .chatbot-input { flex: 1; border: 1px solid #e0e0e0; border-radius: 20px; padding: 0.6rem 1rem; font-size: 0.95rem; outline: none; transition: all 0.2s ease; }
     .chatbot-input:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1); }
-
     .chatbot-send { background: var(--secondary); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; font-size: 1rem; }
     .chatbot-send:active { transform: scale(0.95); }
-
     .chatbot-suggestions { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
     .suggestion-btn { background: white; border: 1px solid #e0e0e0; padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer; text-align: left; font-size: 0.9rem; transition: all 0.2s ease; color: #333; }
     .suggestion-btn:hover { background: #f8f9fa; border-color: var(--secondary); color: var(--secondary); }
-
     .typing-indicator { display: flex; gap: 4px; padding: 0.75rem 1rem; }
     .typing-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; animation: typing 1.4s infinite; }
     .typing-dot:nth-child(2) { animation-delay: 0.2s; }
@@ -62,14 +55,12 @@
   </style>
   <div class='chatbot-widget'>
     <button class='chatbot-toggle' id='chatbotToggle' title='Open Chat'>😎</button>
-
     <div class='chatbot-popup' id='chatbotPopup' style='display: none;'>
       <div class='chatbot-header'>
         <div class='spinner-grow text-success'></div>
         <h3 style='margin-right:80px;'>AI Assistant</h3>
         <button class='chatbot-close' id='chatbotClose' title='Close'>✕</button>
       </div>
-
       <div class='chatbot-messages' id='chatbotMessages'>
         <div class='chatbot-message message-bot'>
           <div class='message-content'>
@@ -77,7 +68,6 @@
           </div>
         </div>
       </div>
-
       <div class='chatbot-input-area'>
         <div class='chatbot-input-group'>
           <input type='text' class='chatbot-input' id='chatbotInput' placeholder='Type your message...' autocomplete='off'>
