@@ -56,7 +56,8 @@ header { position: sticky; top: 0; background:#FFF; box-shadow: 0 2px 10px rgba(
  <!-- HEADER -->
 <header>
   <div class="nav">
-    <div class="logo"><img src="<?= $local ?>assets/Images/android-chrome-512x512.png" height="80" width="80"> BlogScript</div>
+    <div class="logo">
+      <img src="<?= $local ?>/assets/Images/android-chrome-512x512.png" height="80" width="80"> BlogScript</div>
     <div class="nav-links">
       <a href="<?= $local?>/"><i class="fa-solid fa-house"></i> Home</a>
       <a href="<?= $local?>/#blogs"><i class="fa-solid fa-square-pen"></i> Blogs</a>
