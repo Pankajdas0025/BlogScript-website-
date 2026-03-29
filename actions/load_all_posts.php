@@ -4,8 +4,8 @@ include '../src/db.php';
 include '../src/config.php';
 
 // Pagination settings
-$posts_per_page = 8;
 $visible_pages  = 4;
+$posts_per_page = 8;
 
 $page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
 if ($page < 1) $page = 1;
