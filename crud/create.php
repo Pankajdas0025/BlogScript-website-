@@ -91,10 +91,13 @@ if ($verife_user['ID'] != $user) {
 
       <!-- Editor body  -->
       <div class="editor" id="editor" contenteditable="true">
-        Write your blog post here...
       </div>
       <!-- Hidden input for content -->
       <input type="hidden" name="content" id="hiddenContent">
+      <button type="button" onclick="openChatGPT()"
+      style="margin-top:15px; padding:15px; background:#1761DC; box-shadow: 2px 4px 10px rgba(255, 255, 255, 0.5) inset; color:#fff; border:none; font-size:15px; border-radius:16px;">
+      <i class="fa-brands fa-openai"></i>  Create Image with ChatGPT
+      </button>
       <!-- post image upload -->
        <h2><input type="file" id="post_image" name="post_image" accept="image/*" enctype="multipart/form-data" style="margin-top:15px;"></h2>
       <script>
@@ -190,9 +193,70 @@ if ($verife_user['ID'] != $user) {
         }
     ?>
       <script>
-        // const input = document.getElementById("secureInput");
-        // ["copy", "paste", "cut"].forEach(ev =>input.addEventListener(ev, e => e.preventDefault()));
-        // Text formatting function---------------------------------------------------------------------
+function openChatGPT() {
+
+  let title = document.querySelector("input[name='title']").value;
+  let content = document.getElementById("editor").innerText;
+
+  if (!title || !content || title.trim() === "" || content.trim() === "" ) {
+    alert("Write something first!");
+    return;
+  }
+
+// Create AI prompt
+
+let prompt = `
+Create a high realistic, modern and eye-catching blog thumbnail.
+Topic: ${title}
+Main Idea: ${content.substring(0, 150)}... (use this as inspiration for the thumbnail design)
+
+Design Style:
+- Clean and modern UI design
+- High contrast colors
+- Professional lighting and shadows
+- Cinematic look
+
+Visual Elements:
+- Relevant subject related to topic ${title} and content ${content.substring(0, 150)}... (use this as inspiration for the thumbnail design)
+- Add depth of field and realistic textures
+- Use vibrant gradient background
+- Add glowing effects / neon accents
+
+Text on Thumbnail:
+- Main Heading: "${title}" (use big and bold typography)
+- Font: Bold, modern, sans-serif
+- Big and readable typography
+- Highlight important words
+
+Composition:
+- Subject on left/right side
+- Text on opposite side
+- Balanced spacing
+- Slight blur background for focus
+
+Style Enhancements:
+- Ultra HD (4K quality)
+- Sharp details
+- Soft shadows
+- Realistic lighting
+- Slight vignette effect
+
+Aspect Ratio: 16:9
+Resolution: 1200x630  or higher
+
+as per the above instructions, create a visually stunning and professional blog thumbnail image by you  that captures the essence of the topic and attracts readers.
+  `;
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(prompt);
+
+  // Open ChatGPT
+    // Alert user
+  alert("Prompt copied! Paste it in ChatGPT to generate image 🎨");
+  window.open("https://chat.openai.com/", "_blank");
+
+
+}
         function format(command) { document.execCommand(command, false, null);}
         // Save content to hidden input before submitting------------------------------------------------
         function saveContent() {document.getElementById("hiddenContent").value = document.getElementById("editor").innerHTML;}
