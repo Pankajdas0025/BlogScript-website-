@@ -28,5 +28,5 @@ footer p {
     <a href="https://wa.me/919155726625?text=Hey%2C%20can%20you%20Please%20share%20the%20details%20about%20BlogScript"><i class="fa fa-envelope"></i> Contact us</a>|
     <a href="https://github.com/Pankajdas0025/BlogScript-website-"><i class="fa-brands fa-github"></i> Github</a>
   </div>
-  <p>© 2025 BlogScript. All rights reserved.</p>
+  <p>© 2025 BlogScript. All rights reserved.</p> <a href="https://www.instagram.com/campusxchange_services/">Designed with Campusxchange Services 🩷</a>
 </footer>

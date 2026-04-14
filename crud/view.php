@@ -2,6 +2,7 @@
 include '../src/db.php';
 include '../src/config.php';
 session_start();
+$current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM posts JOIN users ON posts.user_id = users.id WHERE posts.id=$id");
 $post = $result->fetch_assoc();
@@ -9,6 +10,29 @@ $post = $result->fetch_assoc();
     header("Location: index.php");
     exit();
  }
+$user_id = $_SESSION['id'] ?? 0;
+
+// Check if liked
+$liked = false;
+if ($user_id) {
+  $check = $conn->query("SELECT * FROM likes WHERE blog_id=$id AND user_id=$user_id");
+  $liked = $check->num_rows > 0;
+
+}
+$likeCountRes = $conn->query("SELECT COUNT(*) as total FROM likes WHERE blog_id=$id");
+$likeCount = $likeCountRes->fetch_assoc()['total'];
+
+
+if (!isset($_SESSION['viewed_posts'])) {
+    $_SESSION['viewed_posts'] = [];
+}
+
+if (!in_array($id, $_SESSION['viewed_posts'])) {
+    $conn->query("UPDATE posts SET views = views + 1 WHERE id = $id");
+
+    // Mark as viewed
+    $_SESSION['viewed_posts'][] = $id;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,9 +78,35 @@ $post = $result->fetch_assoc();
     <div class="post_image">
       <img src="uploads/posts/<?= htmlspecialchars($post['post_image']) ?>" alt="<?= htmlspecialchars($post['title']) ?>" >
     </div>
+    <span  style="border:none; background:none; cursor:pointer;padding:10px; ">
+      <i class="fa fa-eye"></i> <?= $post['views'] ?> Views
+    </span>
+    <span>
+      <button id="likeBtn" onclick="toggleLike()"
+        style="border:none; background:none; cursor:pointer;padding:10px; color:<?= $liked ? 'red' : 'black' ?>">
+        <i class="fa fa-heart"></i> <?= $likeCount ?>
+      </button>
+    </span>
+
+    <span class="me-2 fw-bold">Share to :</span>
+    <!-- Facebook -->
+    <a style="text-decoration: none;" href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode($current_url) ?>"
+       target="_blank"
+       class="btn btn-sm btn-outline-secondary me-1">
+       <i class="fab fa-facebook-f"></i>
+    </a>
+    <!-- WhatsApp -->
+    <a style="text-decoration: none;" href="https://wa.me/?text=<?= urlencode($post['title'] . ' ' . $current_url) ?>"
+       target="_blank"
+       class="btn btn-sm btn-outline-secondary">
+       <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <span class="me-2 fw-bold">Copy URL :</span>
+    <button style="border:none; background:none; cursor:pointer;padding:10px;" onclick="copyLink()"><i class="fa fa-copy"></i></button>
+
     <h2>
       <?= htmlspecialchars($post['title']) ?>
-      <button onclick="copyLink()"><i class="fa fa-share-alt"></i></button>
     </h2>
     <div class="content">
       <?= $post['content'] ?>
@@ -77,6 +127,32 @@ $post = $result->fetch_assoc();
         window.alert("Failed to copy link.");
       });
     }
+
+
+    // Like function
+
+function toggleLike() {
+  fetch('<?= $local ?>/crud/like.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: 'blog_id=<?= $id ?>'
+  })
+  .then(res => res.text())
+  .then(data => {
+    console.log("Response:", data); // 👈 DEBUG
+    alert(data); // 👈 SHOW RESPONSE
+
+    if (data === "login") {
+      alert("Please login first!");
+      return;
+    }
+
+    location.reload();
+  });
+}
+
   </script>
   <?php include '../components/footer.php'; ?>
 </body>
