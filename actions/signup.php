@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
 
   // Get POST data and sanitize
   $Username = trim(mysqli_real_escape_string($conn, $_POST['Name']));
-  $Email = trim(mysqli_real_escape_string($conn, $_POST['Email']));
+  $Email = strtolower(trim(mysqli_real_escape_string($conn, $_POST['Email'])));
   $Password = trim($_POST['Password']); // hash later
   $Profile_img = $_FILES['Profile'];
   $vcode = rand(100000, 999999); // 6-digit verification code
@@ -36,8 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
   $check_stmt->bind_param("s", $Email);
   $check_stmt->execute();
   $check_result = $check_stmt->get_result();
+  echo json_encode($Email);
+  echo json_encode($check_result->num_rows);
+  echo json_encode($check_result);
 
-  if ($check_result && $check_result->num_rows >= 1) {
+  if ($check_result && $check_result->num_rows > 0) {
     $result = array("status" => "error", "message" => "😟This email is already registered!");
     echo json_encode($result);
     exit();
@@ -85,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username =  $myemail; // your Gmail ID
-        $mail->Password = $password;  // Gmail App Password
+        $mail->Password = $Password;  // Gmail App Password
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         $mail->CharSet = 'UTF-8';
