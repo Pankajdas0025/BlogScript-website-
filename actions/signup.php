@@ -1,8 +1,6 @@
 <?php
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 // Include PHPMailer library files
 require '../PHPMailer/src/PHPMailer.php';
 require '../PHPMailer/src/SMTP.php';
@@ -14,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
 
   // Get POST data and sanitize
   $Username = trim(mysqli_real_escape_string($conn, $_POST['Name']));
-  $Email = strtolower(trim(mysqli_real_escape_string($conn, $_POST['Email'])));
+  $Email = trim(mysqli_real_escape_string($conn, $_POST['Email']));
   $Password = trim($_POST['Password']); // hash later
   $Profile_img = $_FILES['Profile'];
   $vcode = rand(100000, 999999); // 6-digit verification code
@@ -36,18 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
   $check_stmt->bind_param("s", $Email);
   $check_stmt->execute();
   $check_result = $check_stmt->get_result();
-  echo json_encode($Email);
-  echo json_encode($check_result->num_rows);
-  echo json_encode($check_result);
 
   if ($check_result && $check_result->num_rows > 0) {
     $result = array("status" => "error", "message" => "😟This email is already registered!");
     echo json_encode($result);
     exit();
   }
+  else{
   // All fields required
   if (!empty($Username) && !empty($Email) && !empty($Password) && !empty($Profile_img)) {
-
     // Hash the password
     $hashed_password = password_hash($Password, PASSWORD_DEFAULT);
     // Profile image upload handling--------------------------------------------------------------
@@ -88,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username =  $myemail; // your Gmail ID
-        $mail->Password = $Password;  // Gmail App Password
+        $mail->Password = $mypassword;  // Gmail App Password
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         $mail->CharSet = 'UTF-8';
@@ -112,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
     <div style='padding: 30px 20px; background-color: #f9fafb;'>
       <p style='font-size: 1rem; text-align: center;'><strong>You're almost there!</strong></p>
       <p style='font-size: 0.95rem; color: #444;'>
-        Thank you for joining <strong>BlogScrip</strong>, where you can share your thoughts, tell your stories, and publish meaningful blogs. To get started with your personal admin panel and begin creating content, we just need to verify your email address.
+        Thank you for joining <strong>BlogScript</strong>, where you can share your thoughts, tell your stories, and publish meaningful blogs. To get started with your personal admin panel and begin creating content, we just need to verify your email address.
       </p>
       <p style='font-size: 0.95rem; color: #444;'>
         Your admin panel allows you to:
@@ -165,6 +160,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
     echo json_encode($result);
     exit();
   }
-} else {
+  }
+
+} else
+{
   echo "Invalid request method!";
 }
