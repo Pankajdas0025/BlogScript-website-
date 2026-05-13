@@ -1,6 +1,8 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 // Include PHPMailer library files
 require '../PHPMailer/src/PHPMailer.php';
 require '../PHPMailer/src/SMTP.php';
@@ -35,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
   $check_stmt->execute();
   $check_result = $check_stmt->get_result();
 
-  if ($check_result && $check_result->num_rows > 0) {
+  if ($check_result && $check_result->num_rows >= 1) {
     $result = array("status" => "error", "message" => "😟This email is already registered!");
     echo json_encode($result);
     exit();
   }
-  else{
   // All fields required
   if (!empty($Username) && !empty($Email) && !empty($Password) && !empty($Profile_img)) {
+
     // Hash the password
     $hashed_password = password_hash($Password, PASSWORD_DEFAULT);
     // Profile image upload handling--------------------------------------------------------------
@@ -52,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
 
     // File size check must be
     if ($fileSize > 500*1024) {
-      $result = array("status" => "error", "message" => "File size must be 500KB or lower.");
+      $result = array("status" => "error", "message" => "File size must be 500 KB or lower.");
       echo json_encode($result);
       exit();
     }
@@ -120,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
       </p>
       <div style='text-align: center; margin: 30px 0;'>
         <a href='{$local}/verification?email=$Email&vcode=$vcode' style='text-decoration: none;'>
-          <button style='padding: 14px 30px; background-color: #10b981; color: white; border: none; border-radius: 25px; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);'>
+          <button style='padding: 14px 30px; background-color: #10b981; color: white; border: none; border-radius: 0px; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);'>
             ✅ Verify Email
           </button>
         </a>
@@ -160,9 +162,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"  && isset($_POST['Name']) && isset($_P
     echo json_encode($result);
     exit();
   }
-  }
-
-} else
-{
+} else {
   echo "Invalid request method!";
 }
