@@ -1,5 +1,6 @@
 <?php
 $local = "http://localhost/BlogScript";
+$currentPage = basename($_SERVER['PHP_SELF'], '.php');
 ?>
 <style>
 /* ========== HEADER ========== */
@@ -76,6 +77,10 @@ header { position: sticky; top: 0; background:#FFF; box-shadow: 0 2px 10px rgba(
         </div>
       <?php elseif(isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] == true): ?>
             <a href="<?= $local ?>/dashboard/author.php" class="btn">Admin</a>
+            <?php if($currentPage === 'author'): ?>
+                <a href="<?= $local ?>" class="btn"> 🌐 </a>
+            <?php endif; ?>
+
       <?php else: ?>
            <a href="<?= $local ?>/register" class="btn">Login</a>
       <?php endif; ?>
