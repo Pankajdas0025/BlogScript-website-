@@ -6,6 +6,7 @@
 
 ## 🚀 About Project
 
+
 BlogScript is a CRUD-based Blog Web Application developed using PHP and MySQL. The platform allows users to create, read, update, and delete blog posts securely with authentication and email verification features.
 
 ---
