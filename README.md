@@ -1,10 +1,5 @@
 # 📘 BlogScript Blog Web Application
 
-![PHP](https://img.shields.io/badge/PHP-Backend-blue?style=flat-square&logo=php)
-![MySQL](https://img.shields.io/badge/MySQL-Database-orange?style=flat-square&logo=mysql)
-![License](https://img.shields.io/badge/License-Educational-green?style=flat-square)
-
-## 🚀 About Project
 
 
 BlogScript is a CRUD-based Blog Web Application developed using PHP and MySQL. The platform allows users to create, read, update, and delete blog posts securely with authentication and email verification features.
