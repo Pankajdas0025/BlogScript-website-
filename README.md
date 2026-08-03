@@ -6,7 +6,7 @@ BlogScript is a CRUD-based Blog Web Application developed using PHP and MySQL. T
 
 ---
 
-## 👨‍💻 Team Members
+##  Team Members
 
 | Name | Role |
 |------|------|
