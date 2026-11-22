@@ -11,7 +11,6 @@ include 'src/config.php';
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Terms & Conditions - BlogScript</title>
     <?php include 'components/head.php'; ?>
-
     <style>
         body {
             font-family: Arial, sans-serif;
